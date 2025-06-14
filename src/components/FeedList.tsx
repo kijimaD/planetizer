@@ -13,7 +13,7 @@ export const FeedList = () => {
   const [items, setItems] = useState<FeedItem[]>([]);
 
   useEffect(() => {
-    fetch("/feed.json")
+    fetch("feed.json")
       .then((res) => res.json())
       .then(setItems);
   }, []);
