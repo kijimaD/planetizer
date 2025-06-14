@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io"
@@ -18,16 +19,18 @@ import (
 
 type FeedItem struct {
 	// 記事のタイトル
-	Title string
+	Title string `json:"title"`
 	// URL
-	Link string
+	Link string `json:"link"`
 	// 公開日
-	Published time.Time
+	Published time.Time `json:"published"`
 	// 本文
-	Summary template.HTML
+	Summary template.HTML `json:"summary"`
 	// 収集元サイトの名前
-	Source string
+	Source string `json:"source"`
 }
+
+const maxContentSize = 600
 
 func main() {
 	fp := gofeed.NewParser()
@@ -55,7 +58,7 @@ func main() {
 				now := time.Now()
 				t = &now
 			}
-			short, err := TruncateHTML(e.Content, 500)
+			short, err := TruncateHTML(e.Content, maxContentSize)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -74,26 +77,16 @@ func main() {
 		return items[i].Published.After(items[j].Published)
 	})
 
-	// HTML生成
-	tmpl, err := template.ParseFiles("templates/index.html")
+	// JSON生成
+	f, err := os.Create("public/feed.json")
 	if err != nil {
 		log.Fatal(err)
 	}
-	os.MkdirAll("public", 0755)
-	out, err := os.Create("public/index.html")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer out.Close()
+	defer f.Close()
 
-	err = tmpl.Execute(out, struct {
-		Items   []FeedItem
-		Updated time.Time
-	}{
-		Items:   items,
-		Updated: time.Now(),
-	})
-	if err != nil {
+	enc := json.NewEncoder(f)
+	enc.SetIndent("", "  ")
+	if err := enc.Encode(items); err != nil {
 		log.Fatal(err)
 	}
 }
