@@ -133,8 +133,6 @@ func truncateNode(n *html.Node, w io.Writer, maxLen, currentLen int) (newLen int
 	case html.TextNode:
 		text := n.Data
 		if currentLen+len(text) > maxLen {
-			text = text[:maxLen-currentLen] + "..."
-			w.Write([]byte(html.EscapeString(text)))
 			return maxLen, true
 		}
 		w.Write([]byte(html.EscapeString(text)))
