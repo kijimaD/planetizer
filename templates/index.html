@@ -9,7 +9,7 @@
         <p>Last updated: {{ .Updated }}</p>
         <ul>
             {{ range .Items }}
-            <li style="border: 1px solid">
+            <li style="border: 1px solid; margin: 1em;">
                 <a href="{{ .Link }}">{{ .Title }}</a><br>
                 <small>{{ .Published }} - {{ .Source }}</small>
                 <p>{{ .Summary }}</p>
