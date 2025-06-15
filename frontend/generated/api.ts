@@ -31,16 +31,66 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 export interface Config {
     /**
      * 
-     * @type {Array<Source>}
+     * @type {Array<ConfigSource>}
      * @memberof Config
      */
-    'sources': Array<Source>;
+    'sources': Array<ConfigSource>;
     /**
      * 
-     * @type {Array<Tag>}
+     * @type {Array<ConfigTag>}
      * @memberof Config
      */
-    'tags': Array<Tag>;
+    'tags': Array<ConfigTag>;
+}
+/**
+ * 
+ * @export
+ * @interface ConfigSource
+ */
+export interface ConfigSource {
+    /**
+     * RSSのURL
+     * @type {string}
+     * @memberof ConfigSource
+     */
+    'rss_url': string;
+    /**
+     * RSS配信元の名前
+     * @type {string}
+     * @memberof ConfigSource
+     */
+    'name': string;
+    /**
+     * RSS配信元の説明
+     * @type {string}
+     * @memberof ConfigSource
+     */
+    'desc': string;
+    /**
+     * RSS配信元についたタグ一覧
+     * @type {Array<string>}
+     * @memberof ConfigSource
+     */
+    'tags': Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface ConfigTag
+ */
+export interface ConfigTag {
+    /**
+     * RSS配信元についたタグ
+     * @type {string}
+     * @memberof ConfigTag
+     */
+    'name': string;
+    /**
+     * RSS配信元についたタグの概要
+     * @type {string}
+     * @memberof ConfigTag
+     */
+    'desc': string;
 }
 /**
  * 
@@ -49,7 +99,7 @@ export interface Config {
  */
 export interface Feed {
     /**
-     * 
+     * フィードキュレーションを実行した日時
      * @type {string}
      * @memberof Feed
      */
@@ -68,85 +118,35 @@ export interface Feed {
  */
 export interface FeedEntry {
     /**
-     * 
+     * フィードエントリのタイトル
      * @type {string}
      * @memberof FeedEntry
      */
     'title': string;
     /**
-     * 
+     * フィードエントリのURL
      * @type {string}
      * @memberof FeedEntry
      */
     'link': string;
     /**
-     * 
+     * フィードエントリの公開日時
      * @type {string}
      * @memberof FeedEntry
      */
     'published': string;
     /**
-     * 
+     * フィードエントリの概要
      * @type {string}
      * @memberof FeedEntry
      */
     'summary': string;
     /**
-     * 
+     * フィードエントリの配信サイトの名前
      * @type {string}
      * @memberof FeedEntry
      */
     'source': string;
-}
-/**
- * 
- * @export
- * @interface Source
- */
-export interface Source {
-    /**
-     * 
-     * @type {string}
-     * @memberof Source
-     */
-    'url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Source
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Source
-     */
-    'desc': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Source
-     */
-    'tags': Array<string>;
-}
-/**
- * 
- * @export
- * @interface Tag
- */
-export interface Tag {
-    /**
-     * 
-     * @type {string}
-     * @memberof Tag
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Tag
-     */
-    'desc': string;
 }
 
 /**

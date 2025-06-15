@@ -23,39 +23,39 @@ components:
         sources:
           type: array
           items:
-            $ref: "#/components/schemas/Source"
+            $ref: "#/components/schemas/ConfigSource"
         tags:
           type: array
           items:
-            $ref: "#/components/schemas/Tag"
+            $ref: "#/components/schemas/ConfigTag"
       required:
         - sources
         - tags
 
-    Source:
+    ConfigSource:
       type: object
       properties:
-        url:
-          $ref: "#/components/schemas/FieldUrl"
+        rss_url:
+          $ref: "#/components/schemas/SourceRssUrl"
         name:
-          $ref: "#/components/schemas/FieldName"
+          $ref: "#/components/schemas/SourceName"
         desc:
-          $ref: "#/components/schemas/FieldDesc"
+          $ref: "#/components/schemas/SourceDesc"
         tags:
-          $ref: "#/components/schemas/FieldTagList"
+          $ref: "#/components/schemas/SourceTagList"
       required:
-        - url
+        - rss_url
         - name
         - desc
         - tags
 
-    Tag:
+    ConfigTag:
       type: object
       properties:
         name:
-          $ref: "#/components/schemas/FieldName"
+          $ref: "#/components/schemas/SourceTagName"
         desc:
-          $ref: "#/components/schemas/FieldDesc"
+          $ref: "#/components/schemas/SourceTagDesc"
       required:
         - name
         - desc
@@ -64,7 +64,7 @@ components:
       type: object
       properties:
         generated_at:
-          $ref: "#/components/schemas/FieldGeneratedAt"
+          $ref: "#/components/schemas/FeedGeneratedAt"
         entries:
           type: array
           items:
@@ -77,15 +77,15 @@ components:
       type: object
       properties:
         title:
-          $ref: "#/components/schemas/FieldTitle"
+          $ref: "#/components/schemas/FeedTitle"
         link:
-          $ref: "#/components/schemas/FieldLink"
+          $ref: "#/components/schemas/FeedLink"
         published:
-          $ref: "#/components/schemas/FieldPublished"
+          $ref: "#/components/schemas/FeedPublished"
         summary:
-          $ref: "#/components/schemas/FieldSummary"
+          $ref: "#/components/schemas/FeedSummary"
         source:
-          $ref: "#/components/schemas/FieldSource"
+          $ref: "#/components/schemas/FeedSource"
       required:
         - title
         - link
@@ -94,48 +94,67 @@ components:
         - source
 
     # フィールド ================
-    FieldUrl:
+    SourceRssUrl:
       type: string
       format: uri
       example: "https://example.com/feed.atom"
+      description: RSSのURL
 
-    FieldName:
+    SourceName:
       type: string
       example: "example"
+      description: RSS配信元の名前
 
-    FieldDesc:
+    SourceDesc:
       type: string
-      example: "Goに関する情報"
+      example: "Goチームによる公式ブログ"
+      description: RSS配信元の説明
 
-    FieldTagList:
+    SourceTagName:
+      type: string
+      example: "go"
+      description: RSS配信元についたタグ
+
+    SourceTagList:
       type: array
       items:
-        type: string
-        example: "go"
+        $ref: "#/components/schemas/SourceTagName"
+      description: RSS配信元についたタグ一覧
 
-    FieldGeneratedAt:
+    SourceTagDesc:
+      type: string
+      example: "Goに関する内容のタグ"
+      description: RSS配信元についたタグの概要
+
+    FeedGeneratedAt:
       type: string
       format: date-time
       example: "2025-06-13T09:31:07Z"
+      description: フィードキュレーションを実行した日時
 
-    FieldTitle:
+    FeedTitle:
       type: string
-      example: "記事タイトル"
+      example: "記事のタイトル"
+      description: フィードエントリのタイトル
 
-    FieldLink:
+    FeedLink:
       type: string
       format: uri
-      example: "https://example.com/article"
+      example: "https://example.com/article/1"
+      description: フィードエントリのURL
 
-    FieldPublished:
+    FeedPublished:
       type: string
       format: date-time
       example: "2025-06-13T09:31:07Z"
+      description: フィードエントリの公開日時
 
-    FieldSummary:
+    FeedSummary:
       type: string
       example: "記事の概要"
+      description: フィードエントリの概要
 
-    FieldSource:
+    FeedSource:
       type: string
-      example: "example"
+      example: "example site"
+      description: フィードエントリの配信サイトの名前

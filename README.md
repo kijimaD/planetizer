@@ -21,7 +21,7 @@ config.json 仕様。フェッチする設定
   {
       "sources": [
           {
-              url: example.com/feed.atom,
+              rss_url: example.com/feed.atom,
               name: example,
               desc: 説明,
               tags: ["go"],

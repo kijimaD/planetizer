@@ -9,65 +9,92 @@ import (
 
 // Config defines model for Config.
 type Config struct {
-	Sources []Source `json:"sources"`
-	Tags    []Tag    `json:"tags"`
+	Sources []ConfigSource `json:"sources"`
+	Tags    []ConfigTag    `json:"tags"`
+}
+
+// ConfigSource defines model for ConfigSource.
+type ConfigSource struct {
+	// Desc RSS配信元の説明
+	Desc SourceDesc `json:"desc"`
+
+	// Name RSS配信元の名前
+	Name SourceName `json:"name"`
+
+	// RssUrl RSSのURL
+	RssUrl SourceRssUrl `json:"rss_url"`
+
+	// Tags RSS配信元についたタグ一覧
+	Tags SourceTagList `json:"tags"`
+}
+
+// ConfigTag defines model for ConfigTag.
+type ConfigTag struct {
+	// Desc RSS配信元についたタグの概要
+	Desc SourceTagDesc `json:"desc"`
+
+	// Name RSS配信元についたタグ
+	Name SourceTagName `json:"name"`
 }
 
 // Feed defines model for Feed.
 type Feed struct {
-	Entries     []FeedEntry      `json:"entries"`
-	GeneratedAt FieldGeneratedAt `json:"generated_at"`
+	Entries []FeedEntry `json:"entries"`
+
+	// GeneratedAt フィードキュレーションを実行した日時
+	GeneratedAt FeedGeneratedAt `json:"generated_at"`
 }
 
 // FeedEntry defines model for FeedEntry.
 type FeedEntry struct {
-	Link      FieldLink      `json:"link"`
-	Published FieldPublished `json:"published"`
-	Source    FieldSource    `json:"source"`
-	Summary   FieldSummary   `json:"summary"`
-	Title     FieldTitle     `json:"title"`
+	// Link フィードエントリのURL
+	Link FeedLink `json:"link"`
+
+	// Published フィードエントリの公開日時
+	Published FeedPublished `json:"published"`
+
+	// Source フィードエントリの配信サイトの名前
+	Source FeedSource `json:"source"`
+
+	// Summary フィードエントリの概要
+	Summary FeedSummary `json:"summary"`
+
+	// Title フィードエントリのタイトル
+	Title FeedTitle `json:"title"`
 }
 
-// FieldDesc defines model for FieldDesc.
-type FieldDesc = string
+// FeedGeneratedAt フィードキュレーションを実行した日時
+type FeedGeneratedAt = time.Time
 
-// FieldGeneratedAt defines model for FieldGeneratedAt.
-type FieldGeneratedAt = time.Time
+// FeedLink フィードエントリのURL
+type FeedLink = string
 
-// FieldLink defines model for FieldLink.
-type FieldLink = string
+// FeedPublished フィードエントリの公開日時
+type FeedPublished = time.Time
 
-// FieldName defines model for FieldName.
-type FieldName = string
+// FeedSource フィードエントリの配信サイトの名前
+type FeedSource = string
 
-// FieldPublished defines model for FieldPublished.
-type FieldPublished = time.Time
+// FeedSummary フィードエントリの概要
+type FeedSummary = string
 
-// FieldSource defines model for FieldSource.
-type FieldSource = string
+// FeedTitle フィードエントリのタイトル
+type FeedTitle = string
 
-// FieldSummary defines model for FieldSummary.
-type FieldSummary = string
+// SourceDesc RSS配信元の説明
+type SourceDesc = string
 
-// FieldTagList defines model for FieldTagList.
-type FieldTagList = []string
+// SourceName RSS配信元の名前
+type SourceName = string
 
-// FieldTitle defines model for FieldTitle.
-type FieldTitle = string
+// SourceRssUrl RSSのURL
+type SourceRssUrl = string
 
-// FieldUrl defines model for FieldUrl.
-type FieldUrl = string
+// SourceTagDesc RSS配信元についたタグの概要
+type SourceTagDesc = string
 
-// Source defines model for Source.
-type Source struct {
-	Desc FieldDesc    `json:"desc"`
-	Name FieldName    `json:"name"`
-	Tags FieldTagList `json:"tags"`
-	Url  FieldUrl     `json:"url"`
-}
+// SourceTagList RSS配信元についたタグ一覧
+type SourceTagList = []SourceTagName
 
-// Tag defines model for Tag.
-type Tag struct {
-	Desc FieldDesc `json:"desc"`
-	Name FieldName `json:"name"`
-}
+// SourceTagName RSS配信元についたタグ
+type SourceTagName = string

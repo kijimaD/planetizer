@@ -9,7 +9,7 @@ import {
   Box,
   Card,
 } from "@chakra-ui/react";
-import type {FeedEntry} from "../generated/api"
+import type { FeedEntry } from "../generated/api";
 
 const feedPath = "feed.json";
 
