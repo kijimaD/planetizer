@@ -74,6 +74,10 @@ func main() {
 
 	// 公開日時でソート
 	sort.Slice(items, func(i, j int) bool {
+		if items[i].Published == items[j].Published {
+			return items[i].Title > items[j].Title
+		}
+
 		return items[i].Published.After(items[j].Published)
 	})
 
