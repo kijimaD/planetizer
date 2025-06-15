@@ -9,19 +9,12 @@ import {
   Box,
   Card,
 } from "@chakra-ui/react";
-
-type FeedItem = {
-  title: string;
-  link: string;
-  published: string;
-  summary: string;
-  source: string;
-};
+import type {FeedEntry} from "../generated/api"
 
 const feedPath = "feed.json";
 
 export const FeedList = () => {
-  const [items, setItems] = useState<FeedItem[]>([]);
+  const [items, setItems] = useState<FeedEntry[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
