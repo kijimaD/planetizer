@@ -1,11 +1,5 @@
 Planet with static file generation.
 
-## Run
-
-```
-npm run dev < /dev/null &
-```
-
 ## TODO
 
 - [x] faviconを正しく設定する

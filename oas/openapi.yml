@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: Planetizer API
+  version: 1.0.0
+  description: Planetizer API!
+
+paths: {}
+
+components:
+  schemas:
+    # 構造体 ================
+    Config:
+      type: object
+      properties:
+        sources:
+          type: array
+          items:
+            $ref: "#/components/schemas/Source"
+        tags:
+          type: array
+          items:
+            $ref: "#/components/schemas/Tag"
+      required:
+        - sources
+        - tags
+
+    Source:
+      type: object
+      properties:
+        url:
+          $ref: "#/components/schemas/FieldUrl"
+        name:
+          $ref: "#/components/schemas/FieldName"
+        desc:
+          $ref: "#/components/schemas/FieldDesc"
+        tags:
+          $ref: "#/components/schemas/FieldTagList"
+      required:
+        - url
+        - name
+        - desc
+        - tags
+
+    Tag:
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/FieldName"
+        desc:
+          $ref: "#/components/schemas/FieldDesc"
+      required:
+        - name
+        - desc
+
+    Feed:
+      type: object
+      properties:
+        generated_at:
+          $ref: "#/components/schemas/FieldGeneratedAt"
+        entries:
+          type: array
+          items:
+            $ref: "#/components/schemas/FeedEntry"
+      required:
+        - generated_at
+        - entries
+
+    FeedEntry:
+      type: object
+      properties:
+        title:
+          $ref: "#/components/schemas/FieldTitle"
+        link:
+          $ref: "#/components/schemas/FieldLink"
+        published:
+          $ref: "#/components/schemas/FieldPublished"
+        summary:
+          $ref: "#/components/schemas/FieldSummary"
+        source:
+          $ref: "#/components/schemas/FieldSource"
+      required:
+        - title
+        - link
+        - published
+        - summary
+        - source
+
+    # フィールド ================
+    FieldUrl:
+      type: string
+      format: uri
+      example: "https://example.com/feed.atom"
+
+    FieldName:
+      type: string
+      example: "example"
+
+    FieldDesc:
+      type: string
+      example: "Goに関する情報"
+
+    FieldTagList:
+      type: array
+      items:
+        type: string
+        example: "go"
+
+    FieldGeneratedAt:
+      type: string
+      format: date-time
+      example: "2025-06-13T09:31:07Z"
+
+    FieldTitle:
+      type: string
+      example: "記事タイトル"
+
+    FieldLink:
+      type: string
+      format: uri
+      example: "https://example.com/article"
+
+    FieldPublished:
+      type: string
+      format: date-time
+      example: "2025-06-13T09:31:07Z"
+
+    FieldSummary:
+      type: string
+      example: "記事の概要"
+
+    FieldSource:
+      type: string
+      example: "example"

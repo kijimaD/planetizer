@@ -4,3 +4,4 @@ https://research.swtch.com/feed.atom
 https://techracho.bpsinc.jp/feed
 https://cprss.s3.amazonaws.com/rubyweekly.com.xml
 http://b.hatena.ne.jp/t-wada/rss
+https://kijimad.github.io/roam/atom.xml
