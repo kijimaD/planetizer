@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   schedule:
     # asia/tokyo: 00:00
-    - cron: "0 15 * * *"
+    - cron: '0 15 * * *'
 
 permissions:
   contents: read
@@ -19,15 +19,19 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    working-directory: frontend
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # fetch feeds
       - name: Set up Go
         uses: actions/setup-go@v5
       - name: Fetch feed
         run: go run .
+        working-directory: .
 
+      # frontend
       - name: Set up Node
         uses: actions/setup-node@v4
         with:

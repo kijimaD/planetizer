@@ -4,9 +4,10 @@ on:
   push:
 
 jobs:
-  test:
+  front:
     name: test
     runs-on: ubuntu-latest
+    working-directory: frontend
 
     steps:
       - uses: actions/checkout@v4
