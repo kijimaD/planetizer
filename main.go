@@ -18,26 +18,15 @@ import (
 	"golang.org/x/net/html"
 )
 
-type FeedItem struct {
-	// 記事のタイトル
-	Title string `json:"title"`
-	// URL
-	Link string `json:"link"`
-	// 公開日
-	Published time.Time `json:"published"`
-	// 本文
-	Summary template.HTML `json:"summary"`
-	// 収集元サイトの名前
-	Source string `json:"source"`
-}
-
 const maxContentSize = 1000
 const configPath = "config.json"
 const feedPath = "frontend/public/feed.json"
 
 func main() {
 	fp := gofeed.NewParser()
-	var items []FeedItem
+	feedResult := generated.FeedResult{
+		GeneratedAt: time.Now(),
+	}
 
 	data, err := os.ReadFile(configPath)
 	if err != nil {
@@ -70,23 +59,23 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			items = append(items, FeedItem{
+			feedResult.Entries = append(feedResult.Entries, generated.FeedEntry{
 				Title:     e.Title,
 				Link:      e.Link,
 				Published: *t,
-				Summary:   template.HTML(short),
+				Summary:   string(template.HTML(short)),
 				Source:    feed.Title,
 			})
 		}
 	}
 
 	// 公開日時でソート
-	sort.Slice(items, func(i, j int) bool {
-		if items[i].Published == items[j].Published {
-			return items[i].Title > items[j].Title
+	sort.Slice(feedResult.Entries, func(i, j int) bool {
+		if feedResult.Entries[i].Published == feedResult.Entries[j].Published {
+			return feedResult.Entries[i].Title > feedResult.Entries[j].Title
 		}
 
-		return items[i].Published.After(items[j].Published)
+		return feedResult.Entries[i].Published.After(feedResult.Entries[j].Published)
 	})
 
 	// 収集フィードでJSON生成する
@@ -98,7 +87,7 @@ func main() {
 
 	enc := json.NewEncoder(f)
 	enc.SetIndent("", "  ")
-	if err := enc.Encode(items); err != nil {
+	if err := enc.Encode(feedResult); err != nil {
 		log.Fatal(err)
 	}
 }

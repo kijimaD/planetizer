@@ -95,25 +95,6 @@ export interface ConfigTag {
 /**
  * 
  * @export
- * @interface Feed
- */
-export interface Feed {
-    /**
-     * フィードキュレーションを実行した日時
-     * @type {string}
-     * @memberof Feed
-     */
-    'generated_at': string;
-    /**
-     * 
-     * @type {Array<FeedEntry>}
-     * @memberof Feed
-     */
-    'entries': Array<FeedEntry>;
-}
-/**
- * 
- * @export
  * @interface FeedEntry
  */
 export interface FeedEntry {
@@ -147,6 +128,25 @@ export interface FeedEntry {
      * @memberof FeedEntry
      */
     'source': string;
+}
+/**
+ * 
+ * @export
+ * @interface FeedResult
+ */
+export interface FeedResult {
+    /**
+     * フィードキュレーションを実行した日時
+     * @type {string}
+     * @memberof FeedResult
+     */
+    'generated_at': string;
+    /**
+     * 
+     * @type {Array<FeedEntry>}
+     * @memberof FeedResult
+     */
+    'entries': Array<FeedEntry>;
 }
 
 /**

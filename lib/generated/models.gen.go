@@ -37,14 +37,6 @@ type ConfigTag struct {
 	Name SourceTagName `json:"name"`
 }
 
-// Feed defines model for Feed.
-type Feed struct {
-	Entries []FeedEntry `json:"entries"`
-
-	// GeneratedAt フィードキュレーションを実行した日時
-	GeneratedAt FeedGeneratedAt `json:"generated_at"`
-}
-
 // FeedEntry defines model for FeedEntry.
 type FeedEntry struct {
 	// Link フィードエントリのURL
@@ -71,6 +63,14 @@ type FeedLink = string
 
 // FeedPublished フィードエントリの公開日時
 type FeedPublished = time.Time
+
+// FeedResult defines model for FeedResult.
+type FeedResult struct {
+	Entries []FeedEntry `json:"entries"`
+
+	// GeneratedAt フィードキュレーションを実行した日時
+	GeneratedAt FeedGeneratedAt `json:"generated_at"`
+}
 
 // FeedSource フィードエントリの配信サイトの名前
 type FeedSource = string
