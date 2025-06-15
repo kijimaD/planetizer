@@ -1,5 +1,13 @@
 import { Outlet } from "react-router";
-import { Container, Link, Box, Flex, HStack, Heading } from "@chakra-ui/react";
+import {
+  Center,
+  Container,
+  Link,
+  Box,
+  Flex,
+  HStack,
+  Heading,
+} from "@chakra-ui/react";
 import { FaGithub } from "react-icons/fa";
 
 export const AppLayout = () => {
@@ -10,16 +18,16 @@ export const AppLayout = () => {
           <Heading>PLANET</Heading>
         </HStack>
       </Flex>
-      <Container w="600px" py={8}>
+      <Container w="600px" minHeight="90vh" py={8}>
         <Outlet />
       </Container>
-      <Flex>
+      <Center>
         <HStack>
           <Link href="https://github.com/kijimaD/planetizer">
             <FaGithub />
           </Link>
         </HStack>
-      </Flex>
+      </Center>
     </Box>
   );
 };
