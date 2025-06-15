@@ -5,7 +5,7 @@ on:
 
 jobs:
   front:
-    name: test
+    name: front check
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,3 +29,21 @@ jobs:
 
       - name: lint
         run: "npm run lint"
+
+  schema:
+    name: schema check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: generate api
+        run: ./oas/scripts/generate-api.sh
+
+      - name: generate frontend
+        run: ./oas/scripts/generate-frontend.sh
+
+      - name: diff
+        run: |
+          # 差分が出たら失敗させる
+          test -z "$(git status -s)"
