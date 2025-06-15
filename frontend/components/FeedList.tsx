@@ -60,9 +60,9 @@ export const FeedList = () => {
                   {item.title}
                 </Link>
               </Heading>
-              <small>
+              <Text textStyle="xs">
                 {new Date(item.published).toLocaleString()} - {item.source}
-              </small>
+              </Text>
             </Card.Header>
             <Card.Body>
               <Text
