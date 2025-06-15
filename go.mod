@@ -1,4 +1,4 @@
-module github.com/kijimaD/planetize
+module github.com/kijimaD/planetizer
 
 go 1.24.0
 

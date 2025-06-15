@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-const repositoryName = "planetize";
+const repositoryName = "planetizer";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({

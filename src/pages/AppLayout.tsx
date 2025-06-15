@@ -15,7 +15,7 @@ export const AppLayout = () => {
       </Container>
       <Flex>
         <HStack>
-          <Link href="https://github.com/kijimaD/planetize">
+          <Link href="https://github.com/kijimaD/planetizer">
             <FaGithub />
           </Link>
         </HStack>
