@@ -31,12 +31,14 @@ type FeedItem struct {
 }
 
 const maxContentSize = 1000
+const configPath = "config.txt"
+const feedPath = "frontend/public/feed.json"
 
 func main() {
 	fp := gofeed.NewParser()
 	var items []FeedItem
 
-	data, err := os.ReadFile("feeds.txt")
+	data, err := os.ReadFile(configPath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -81,8 +83,8 @@ func main() {
 		return items[i].Published.After(items[j].Published)
 	})
 
-	// JSON生成
-	f, err := os.Create("public/feed.json")
+	// 収集フィードでJSON生成する
+	f, err := os.Create(feedPath)
 	if err != nil {
 		log.Fatal(err)
 	}
