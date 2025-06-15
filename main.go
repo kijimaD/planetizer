@@ -30,7 +30,7 @@ type FeedItem struct {
 	Source string `json:"source"`
 }
 
-const maxContentSize = 600
+const maxContentSize = 1000
 
 func main() {
 	fp := gofeed.NewParser()

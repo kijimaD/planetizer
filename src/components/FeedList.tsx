@@ -34,7 +34,7 @@ export const FeedList = () => {
               </small>
             </Card.Header>
             <Card.Body>
-              <Text dangerouslySetInnerHTML={{ __html: item.summary }} />
+              <Text dangerouslySetInnerHTML={{ __html: item.summary }} className="feedcontent" />
             </Card.Body>
           </Card.Root>
         </Box>
