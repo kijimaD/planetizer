@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, Text, Stack, Heading, Box, Card } from "@chakra-ui/react";
+import {
+  Center,
+  Spinner,
+  Link,
+  Text,
+  Stack,
+  Heading,
+  Box,
+  Card,
+} from "@chakra-ui/react";
 
 type FeedItem = {
   title: string;
@@ -11,12 +20,34 @@ type FeedItem = {
 
 export const FeedList = () => {
   const [items, setItems] = useState<FeedItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("feed.json")
       .then((res) => res.json())
-      .then(setItems);
+      .then((data) => {
+        setItems(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch feed:", err);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
+    return (
+      <Box pos="absolute" inset="0">
+        <Center h="full">
+          <Spinner size="xl" />
+        </Center>
+      </Box>
+    );
+  }
+
+  if (!items) {
+    return <div>No data.</div>;
+  }
 
   return (
     <Stack gap="8" direction="row" wrap="wrap">
@@ -34,7 +65,10 @@ export const FeedList = () => {
               </small>
             </Card.Header>
             <Card.Body>
-              <Text dangerouslySetInnerHTML={{ __html: item.summary }} className="feedcontent" />
+              <Text
+                dangerouslySetInnerHTML={{ __html: item.summary }}
+                className="feedcontent"
+              />
             </Card.Body>
           </Card.Root>
         </Box>
