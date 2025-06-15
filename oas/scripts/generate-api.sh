@@ -22,4 +22,5 @@ docker run --rm \
        golang:1.24-bookworm \
        bash -c "go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@v2.4.1 && \
          oapi-codegen --config oas/config/models.yml oas/output/openapi.gen.yml && \
+         oapi-codegen --config oas/config/server.yml oas/output/openapi.gen.yml && \
          oapi-codegen --config oas/config/spec.yml oas/output/openapi.gen.yml"

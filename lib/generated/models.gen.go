@@ -4,93 +4,70 @@
 package generated
 
 import (
-	"bytes"
-	"compress/gzip"
-	"encoding/base64"
-	"fmt"
-	"net/url"
-	"path"
-	"strings"
-
-	"github.com/getkin/kin-openapi/openapi3"
+	"time"
 )
 
-// Base64 encoded, gzipped, json marshaled Swagger object
-var swaggerSpec = []string{
-
-	"H4sIAAAAAAAC/2TNsQoCMQyH8VfR/xxK5bZujm73CuWMGDiT0AYHS99d0PHmj4/fwGYvN2WNjjImQfRh",
-	"KAN37lsTDzFFwbpX5ZAPt9N1vZ1BCImdDwWEN7f+ny4pp4xJMGetLihYUk4LCF7j+QPnNwAA///iACy4",
-	"ggAAAA==",
+// Config defines model for Config.
+type Config struct {
+	Sources []Source `json:"sources"`
+	Tags    []Tag    `json:"tags"`
 }
 
-// GetSwagger returns the content of the embedded swagger specification file
-// or error if failed to decode
-func decodeSpec() ([]byte, error) {
-	zipped, err := base64.StdEncoding.DecodeString(strings.Join(swaggerSpec, ""))
-	if err != nil {
-		return nil, fmt.Errorf("error base64 decoding spec: %w", err)
-	}
-	zr, err := gzip.NewReader(bytes.NewReader(zipped))
-	if err != nil {
-		return nil, fmt.Errorf("error decompressing spec: %w", err)
-	}
-	var buf bytes.Buffer
-	_, err = buf.ReadFrom(zr)
-	if err != nil {
-		return nil, fmt.Errorf("error decompressing spec: %w", err)
-	}
-
-	return buf.Bytes(), nil
+// Feed defines model for Feed.
+type Feed struct {
+	Entries     []FeedEntry      `json:"entries"`
+	GeneratedAt FieldGeneratedAt `json:"generated_at"`
 }
 
-var rawSpec = decodeSpecCached()
-
-// a naive cached of a decoded swagger spec
-func decodeSpecCached() func() ([]byte, error) {
-	data, err := decodeSpec()
-	return func() ([]byte, error) {
-		return data, err
-	}
+// FeedEntry defines model for FeedEntry.
+type FeedEntry struct {
+	Link      FieldLink      `json:"link"`
+	Published FieldPublished `json:"published"`
+	Source    FieldSource    `json:"source"`
+	Summary   FieldSummary   `json:"summary"`
+	Title     FieldTitle     `json:"title"`
 }
 
-// Constructs a synthetic filesystem for resolving external references when loading openapi specifications.
-func PathToRawSpec(pathToFile string) map[string]func() ([]byte, error) {
-	res := make(map[string]func() ([]byte, error))
-	if len(pathToFile) > 0 {
-		res[pathToFile] = rawSpec
-	}
+// FieldDesc defines model for FieldDesc.
+type FieldDesc = string
 
-	return res
+// FieldGeneratedAt defines model for FieldGeneratedAt.
+type FieldGeneratedAt = time.Time
+
+// FieldLink defines model for FieldLink.
+type FieldLink = string
+
+// FieldName defines model for FieldName.
+type FieldName = string
+
+// FieldPublished defines model for FieldPublished.
+type FieldPublished = time.Time
+
+// FieldSource defines model for FieldSource.
+type FieldSource = string
+
+// FieldSummary defines model for FieldSummary.
+type FieldSummary = string
+
+// FieldTagList defines model for FieldTagList.
+type FieldTagList = []string
+
+// FieldTitle defines model for FieldTitle.
+type FieldTitle = string
+
+// FieldUrl defines model for FieldUrl.
+type FieldUrl = string
+
+// Source defines model for Source.
+type Source struct {
+	Desc FieldDesc    `json:"desc"`
+	Name FieldName    `json:"name"`
+	Tags FieldTagList `json:"tags"`
+	Url  FieldUrl     `json:"url"`
 }
 
-// GetSwagger returns the Swagger specification corresponding to the generated code
-// in this file. The external references of Swagger specification are resolved.
-// The logic of resolving external references is tightly connected to "import-mapping" feature.
-// Externally referenced files must be embedded in the corresponding golang packages.
-// Urls can be supported but this task was out of the scope.
-func GetSwagger() (swagger *openapi3.T, err error) {
-	resolvePath := PathToRawSpec("")
-
-	loader := openapi3.NewLoader()
-	loader.IsExternalRefsAllowed = true
-	loader.ReadFromURIFunc = func(loader *openapi3.Loader, url *url.URL) ([]byte, error) {
-		pathToFile := url.String()
-		pathToFile = path.Clean(pathToFile)
-		getSpec, ok := resolvePath[pathToFile]
-		if !ok {
-			err1 := fmt.Errorf("path not found: %s", pathToFile)
-			return nil, err1
-		}
-		return getSpec()
-	}
-	var specData []byte
-	specData, err = rawSpec()
-	if err != nil {
-		return
-	}
-	swagger, err = loader.LoadFromData(specData)
-	if err != nil {
-		return
-	}
-	return
+// Tag defines model for Tag.
+type Tag struct {
+	Desc FieldDesc `json:"desc"`
+	Name FieldName `json:"name"`
 }
