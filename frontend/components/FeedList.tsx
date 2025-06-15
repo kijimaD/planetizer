@@ -18,7 +18,7 @@ type FeedItem = {
   source: string;
 };
 
-const feedPath = "feed.json"
+const feedPath = "feed.json";
 
 export const FeedList = () => {
   const [items, setItems] = useState<FeedItem[]>([]);

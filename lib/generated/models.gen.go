@@ -18,9 +18,9 @@ import (
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"H4sIAAAAAAAC/2zLMQpCMQwG4KvIP5dSeVs2R7d3hfKMGKhJaKODpXd3cHX++CYOe7opawzQXAmidwNN",
-	"3HgcXTzEFIS9VeWQD/fTZb8iISQa/4M39/E751xywUowZ60uIGy55A0JXuMxQPpqbX0DAAD//zHS29qD",
-	"AAAA",
+	"H4sIAAAAAAAC/2TNsQoCMQyH8VfR/xxK5bZujm73CuWMGDiT0AYHS99d0PHmj4/fwGYvN2WNjjImQfRh",
+	"KAN37lsTDzFFwbpX5ZAPt9N1vZ1BCImdDwWEN7f+ny4pp4xJMGetLihYUk4LCF7j+QPnNwAA///iACy4",
+	"ggAAAA==",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

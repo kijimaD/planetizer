@@ -1,21 +1,21 @@
 #!/bin/bash
 set -eux
 
-###########
-# comment
-###########
+####################
+# generate frontend
+####################
 
 cd `dirname $0`
-cd ..
+cd ../..
 
 docker run --rm \
        -v $PWD:/workdir \
        -w /workdir \
        -u "$(id -u):$(id -g)" \
        openapitools/openapi-generator-cli:v7.11.0 generate \
-         -i openapi.yml \
+         -i oas/openapi.yml \
          -g typescript-axios \
-         -o output/ts-axios
+         -o oas/output/ts-axios
 
-mkdir -p generated
-mv output/ts-axios/*.ts generated/
+mkdir -p frontend/generated
+mv oas/output/ts-axios/*.ts frontend/generated/

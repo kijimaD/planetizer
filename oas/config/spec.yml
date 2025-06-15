@@ -1,4 +1,4 @@
 package: generated
 generate:
   embedded-spec: true
-output: generated/spec.gen.go
+output: ./lib/generated/models.gen.go
