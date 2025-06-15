@@ -18,12 +18,14 @@ type FeedItem = {
   source: string;
 };
 
+const feedPath = "feed.json"
+
 export const FeedList = () => {
   const [items, setItems] = useState<FeedItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("feed.json")
+    fetch(feedPath)
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
