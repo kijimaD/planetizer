@@ -5,6 +5,7 @@ info:
   description: Planetizer API!
 
 paths:
+  # フロントのコード生成時に未使用エラーになるので必要...
   /dummy:
     get:
       summary: dummy
