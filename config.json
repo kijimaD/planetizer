@@ -1,0 +1,26 @@
+{
+  "sources": [
+    {
+      "rss_url": "https://go.dev/blog/feed.atom?format=xml",
+      "name": "Go Blog",
+      "desc": "Goチームによる公式ブログ",
+      "tags": [
+        "go"
+      ]
+    },
+    {
+      "rss_url": "https://dave.cheney.net/feed",
+      "name": "Dave Cheney Blog",
+      "desc": "Go開発者のブログ",
+      "tags": [
+        "go"
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "go",
+      "desc": "Goに関する情報"
+    }
+  ]
+}

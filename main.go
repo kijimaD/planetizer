@@ -13,6 +13,7 @@ import (
 
 	"strings"
 
+	"github.com/kijimaD/planetizer/lib/generated"
 	"github.com/mmcdole/gofeed"
 	"golang.org/x/net/html"
 )
@@ -31,7 +32,7 @@ type FeedItem struct {
 }
 
 const maxContentSize = 1000
-const configPath = "config.txt"
+const configPath = "config.json"
 const feedPath = "frontend/public/feed.json"
 
 func main() {
@@ -42,10 +43,15 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	lines := strings.Split(string(data), "\n")
 
-	for _, url := range lines {
-		url = strings.TrimSpace(url)
+	config := &generated.Config{}
+	err = json.Unmarshal([]byte(data), config)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	for _, s := range config.Sources {
+		url := strings.TrimSpace(s.RssUrl)
 		if url == "" {
 			continue
 		}

@@ -15,31 +15,6 @@ Planet with static file generation.
 
 ## ファイル仕様
 
-config.json 仕様。フェッチする設定
-
-```json
-  {
-      "sources": [
-          {
-              rss_url: example.com/feed.atom,
-              name: example,
-              desc: 説明,
-              tags: ["go"],
-          }
-      ],
-      "tags": [
-          {
-              "name": "go",
-              "desc": "Goに関する情報"
-          },
-          {
-              "name": "official",
-              "desc": "公式情報"
-          }
-      ]
-  }
-```
-
 feed.json 仕様。保存データ仕様
 
 ```json
