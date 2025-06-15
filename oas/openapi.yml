@@ -4,7 +4,14 @@ info:
   version: 1.0.0
   description: Planetizer API!
 
-paths: {}
+paths:
+  /dummy:
+    get:
+      summary: dummy
+      description: dummy
+      operationId: dummy
+      parameters: []
+      responses: {}
 
 components:
   schemas:
