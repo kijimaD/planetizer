@@ -136,6 +136,12 @@ export interface FeedEntry {
  */
 export interface FeedResult {
     /**
+     * 
+     * @type {Config}
+     * @memberof FeedResult
+     */
+    'config': Config;
+    /**
      * フィードキュレーションを実行した日時
      * @type {string}
      * @memberof FeedResult

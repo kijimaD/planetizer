@@ -66,6 +66,7 @@ type FeedPublished = time.Time
 
 // FeedResult defines model for FeedResult.
 type FeedResult struct {
+	Config  Config      `json:"config"`
 	Entries []FeedEntry `json:"entries"`
 
 	// GeneratedAt フィードキュレーションを実行した日時

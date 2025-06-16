@@ -15,7 +15,25 @@
       "tags": [
         "go"
       ]
-    }
+    },
+    {
+      "rss_url": "http://b.hatena.ne.jp/t-wada/rss",
+      "name": "t-wadaのはてなブックマーク",
+      "desc": "有名な開発者のブックマーク。開発に関する話題など",
+      "tags": []
+    },
+      {
+      "rss_url": "https://syu-m-5151.hatenablog.com/rss",
+      "name": "nwiizoのはてなブログ",
+      "desc": "有名な開発者のブログ。AIツールや、技術記事に関する話題など",
+      "tags": []
+      },
+      {
+      "rss_url": "https://kijimad.github.io/roam/atom.xml",
+      "name": "自分のメモ",
+      "desc": "自分の公開メモ。ほかの優良な記事と比較して見る",
+      "tags": []
+      }
   ],
   "tags": [
     {

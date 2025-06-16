@@ -63,6 +63,8 @@ components:
     FeedResult:
       type: object
       properties:
+        config:
+          $ref: "#/components/schemas/Config"
         generated_at:
           $ref: "#/components/schemas/FeedGeneratedAt"
         entries:
@@ -70,6 +72,7 @@ components:
           items:
             $ref: "#/components/schemas/FeedEntry"
       required:
+        - config
         - generated_at
         - entries
 

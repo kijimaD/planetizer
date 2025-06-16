@@ -38,6 +38,7 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	feedResult.Config = *config
 
 	for _, s := range config.Sources {
 		url := strings.TrimSpace(s.RssUrl)
