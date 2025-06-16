@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   Center,
   Spinner,
@@ -9,26 +8,10 @@ import {
   Box,
   Card,
 } from "@chakra-ui/react";
-import type { FeedResult } from "../generated/api";
-
-const feedPath = "feed.json";
+import { useFeed } from "../hooks/FeedContext";
 
 export const FeedList = () => {
-  const [feed, setFeed] = useState<FeedResult>();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(feedPath)
-      .then((res) => res.json())
-      .then((data) => {
-        setFeed(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch feed:", err);
-        setLoading(false);
-      });
-  }, []);
+  const { feed, siteStates, toggleSite, loading } = useFeed();
 
   if (loading) {
     return (
