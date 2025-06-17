@@ -65,7 +65,7 @@ func main() {
 				Link:      e.Link,
 				Published: *t,
 				Summary:   string(template.HTML(short)),
-				Source:    feed.Title,
+				Source:    s,
 			})
 		}
 	}

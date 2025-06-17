@@ -4,7 +4,7 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 import { AppLayout } from "./pages/AppLayout";
-import { FeedProvider } from "./hooks/FeedContext";
+import { FeedProvider } from "./hooks/FeedProvider";
 
 function App() {
   return (

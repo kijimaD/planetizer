@@ -1,4 +1,5 @@
 import {
+  Checkbox,
   Center,
   Spinner,
   Link,
@@ -27,10 +28,25 @@ export const FeedList = () => {
     return <div>No data.</div>;
   }
 
+  const entries = feed.entries.filter((e) => siteStates[e.source.name]);
+
   return (
     <>
+      <Stack direction="row" wrap="wrap" mb="6">
+        {Object.entries(siteStates).map(([source, isActive]) => (
+          <Checkbox.Root
+            key={source}
+            checked={isActive}
+            onCheckedChange={() => toggleSite(source)}
+          >
+            <Checkbox.HiddenInput />
+            <Checkbox.Control />
+            <Checkbox.Label>{source}</Checkbox.Label>
+          </Checkbox.Root>
+        ))}
+      </Stack>
       <Stack gap="8" direction="row" wrap="wrap">
-        {feed.entries.map((entry, i) => (
+        {entries.map((entry, i) => (
           <Box key={i}>
             <Card.Root w="600px" bgColor="gray.50">
               <Card.Header>
@@ -40,7 +56,8 @@ export const FeedList = () => {
                   </Link>
                 </Heading>
                 <Text textStyle="xs">
-                  {new Date(entry.published).toLocaleString()} - {entry.source}
+                  {new Date(entry.published).toLocaleString()} -{" "}
+                  {entry.source.name}
                 </Text>
               </Card.Header>
               <Card.Body>

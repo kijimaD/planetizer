@@ -43,11 +43,14 @@ components:
           $ref: "#/components/schemas/SourceDesc"
         tags:
           $ref: "#/components/schemas/SourceTagList"
+        initial_visible:
+          $ref: "#/components/schemas/SourceInitialVisible"
       required:
         - rss_url
         - name
         - desc
         - tags
+        - initial_visible
 
     ConfigTag:
       type: object
@@ -88,7 +91,7 @@ components:
         summary:
           $ref: "#/components/schemas/FeedSummary"
         source:
-          $ref: "#/components/schemas/FeedSource"
+          $ref: "#/components/schemas/ConfigSource"
       required:
         - title
         - link
@@ -112,6 +115,10 @@ components:
       type: string
       example: "Goチームによる公式ブログ"
       description: RSS配信元の説明
+
+    SourceInitialVisible:
+      type: boolean
+      description: 読み込んだ直後の可視状態
 
     SourceTagName:
       type: string
@@ -156,8 +163,3 @@ components:
       type: string
       example: "記事の概要"
       description: フィードエントリの概要
-
-    FeedSource:
-      type: string
-      example: "example site"
-      description: フィードエントリの配信サイトの名前

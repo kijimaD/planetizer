@@ -72,6 +72,12 @@ export interface ConfigSource {
      * @memberof ConfigSource
      */
     'tags': Array<string>;
+    /**
+     * 読み込んだ直後の可視状態
+     * @type {boolean}
+     * @memberof ConfigSource
+     */
+    'initial_visible': boolean;
 }
 /**
  * 
@@ -123,11 +129,11 @@ export interface FeedEntry {
      */
     'summary': string;
     /**
-     * フィードエントリの配信サイトの名前
-     * @type {string}
+     * 
+     * @type {ConfigSource}
      * @memberof FeedEntry
      */
-    'source': string;
+    'source': ConfigSource;
 }
 /**
  * 

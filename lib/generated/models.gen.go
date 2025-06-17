@@ -18,6 +18,9 @@ type ConfigSource struct {
 	// Desc RSS配信元の説明
 	Desc SourceDesc `json:"desc"`
 
+	// InitialVisible 読み込んだ直後の可視状態
+	InitialVisible *SourceInitialVisible `json:"initial_visible,omitempty"`
+
 	// Name RSS配信元の名前
 	Name SourceName `json:"name"`
 
@@ -44,9 +47,7 @@ type FeedEntry struct {
 
 	// Published フィードエントリの公開日時
 	Published FeedPublished `json:"published"`
-
-	// Source フィードエントリの配信サイトの名前
-	Source FeedSource `json:"source"`
+	Source    ConfigSource  `json:"source"`
 
 	// Summary フィードエントリの概要
 	Summary FeedSummary `json:"summary"`
@@ -73,9 +74,6 @@ type FeedResult struct {
 	GeneratedAt FeedGeneratedAt `json:"generated_at"`
 }
 
-// FeedSource フィードエントリの配信サイトの名前
-type FeedSource = string
-
 // FeedSummary フィードエントリの概要
 type FeedSummary = string
 
@@ -84,6 +82,9 @@ type FeedTitle = string
 
 // SourceDesc RSS配信元の説明
 type SourceDesc = string
+
+// SourceInitialVisible 読み込んだ直後の可視状態
+type SourceInitialVisible = bool
 
 // SourceName RSS配信元の名前
 type SourceName = string
