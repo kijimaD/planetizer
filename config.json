@@ -5,7 +5,8 @@
       "name": "Go Blog",
       "desc": "Goチームによる公式ブログ",
       "tags": [
-        "go"
+          "go",
+          "official"
       ],
       "initial_visible": true
     },
@@ -44,6 +45,10 @@
     {
       "name": "go",
       "desc": "Goに関する情報"
+    },
+    {
+      "name": "official",
+      "desc": "公式"
     }
   ]
 }

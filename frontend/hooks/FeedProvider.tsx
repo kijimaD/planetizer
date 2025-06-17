@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FeedContext } from "./FeedContext";
-import type { FeedResult, FeedEntry } from "../generated/api";
+import type { FeedResult, FeedEntry, ConfigSource } from "../generated/api";
 
-export type SiteStates = Record<string, boolean>;
+export type SiteStates = Record<string, ConfigSource>;
 
 const feedPath = "feed.json";
 
@@ -20,7 +20,7 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
         setFeed(data);
         const states: SiteStates = {};
         data.entries.forEach((e: FeedEntry) => {
-          states[e.source.name] = e.source.initial_visible;
+          states[e.source.name] = e.source;
         });
         setSiteStates(states);
       })
@@ -28,7 +28,13 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const toggleSite = (source: string) => {
-    setSiteStates((prev) => ({ ...prev, [source]: !prev[source] }));
+    setSiteStates((prev) => ({
+      ...prev,
+      [source]: {
+        ...prev[source],
+        initial_visible: !prev[source].initial_visible,
+      },
+    }));
   };
 
   return (

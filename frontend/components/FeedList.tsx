@@ -1,4 +1,5 @@
 import {
+  Badge,
   Checkbox,
   Center,
   Spinner,
@@ -11,6 +12,7 @@ import {
   Table,
 } from "@chakra-ui/react";
 import { useFeed } from "../hooks/FeedContext";
+import { Tooltip } from "./Tooltip";
 
 export const FeedList = () => {
   const { feed, siteStates, toggleSite, loading } = useFeed();
@@ -29,31 +31,39 @@ export const FeedList = () => {
     return <div>No data.</div>;
   }
 
-  const entries = feed.entries.filter((e) => siteStates[e.source.name]);
+  const entries = feed.entries.filter(
+    (e) => siteStates[e.source.name].initial_visible,
+  );
 
   return (
     <>
       <Stack direction="row" wrap="wrap" mb="6">
-        <Table.Root variant="simple" size="md">
+        <Table.Root size="md">
           <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeader>表示</Table.ColumnHeader>
-              <Table.ColumnHeader>サイト名</Table.ColumnHeader>
-            </Table.Row>
+            <Table.Row></Table.Row>
           </Table.Header>
           <Table.Body>
-            {Object.entries(siteStates).map(([source, isActive]) => (
-              <Table.Row key={source}>
+            {Object.entries(siteStates).map(([sourceName, source]) => (
+              <Table.Row key={sourceName}>
                 <Table.Cell>
                   <Checkbox.Root
-                    key={source}
-                    checked={isActive}
-                    onCheckedChange={() => toggleSite(source)}
+                    key={sourceName}
+                    checked={source.initial_visible}
+                    onCheckedChange={() => toggleSite(sourceName)}
                   >
                     <Checkbox.HiddenInput />
                     <Checkbox.Control />
-                    <Checkbox.Label>{source}</Checkbox.Label>
+                    <Tooltip content={source.desc} showArrow>
+                      <Checkbox.Label>{sourceName}</Checkbox.Label>
+                    </Tooltip>
                   </Checkbox.Root>
+                </Table.Cell>
+                <Table.Cell>
+                  <Stack direction="row">
+                    {source.tags.map((tag) => (
+                      <Badge>{tag}</Badge>
+                    ))}
+                  </Stack>
                 </Table.Cell>
               </Table.Row>
             ))}
