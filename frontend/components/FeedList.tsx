@@ -8,6 +8,7 @@ import {
   Heading,
   Box,
   Card,
+  Table,
 } from "@chakra-ui/react";
 import { useFeed } from "../hooks/FeedContext";
 
@@ -33,17 +34,31 @@ export const FeedList = () => {
   return (
     <>
       <Stack direction="row" wrap="wrap" mb="6">
-        {Object.entries(siteStates).map(([source, isActive]) => (
-          <Checkbox.Root
-            key={source}
-            checked={isActive}
-            onCheckedChange={() => toggleSite(source)}
-          >
-            <Checkbox.HiddenInput />
-            <Checkbox.Control />
-            <Checkbox.Label>{source}</Checkbox.Label>
-          </Checkbox.Root>
-        ))}
+        <Table.Root variant="simple" size="md">
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeader>表示</Table.ColumnHeader>
+              <Table.ColumnHeader>サイト名</Table.ColumnHeader>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {Object.entries(siteStates).map(([source, isActive]) => (
+              <Table.Row key={source}>
+                <Table.Cell>
+                  <Checkbox.Root
+                    key={source}
+                    checked={isActive}
+                    onCheckedChange={() => toggleSite(source)}
+                  >
+                    <Checkbox.HiddenInput />
+                    <Checkbox.Control />
+                    <Checkbox.Label>{source}</Checkbox.Label>
+                  </Checkbox.Root>
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table.Root>
       </Stack>
       <Stack gap="8" direction="row" wrap="wrap">
         {entries.map((entry, i) => (
