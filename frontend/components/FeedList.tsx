@@ -13,9 +13,23 @@ import {
 } from "@chakra-ui/react";
 import { useFeed } from "../hooks/FeedContext";
 import { Tooltip } from "./Tooltip";
+import type { ConfigTag } from "../generated/api";
+import { useState, useEffect } from "react";
 
 export const FeedList = () => {
   const { feed, siteStates, toggleSite, loading } = useFeed();
+
+  const [tagRecord, setTagRecord] = useState<Record<string, ConfigTag>>({});
+  useEffect(() => {
+    if (!feed) return;
+    const record: Record<string, ConfigTag> = {};
+
+    feed.config.tags.forEach((tag) => {
+      record[tag.name] = tag;
+    });
+
+    setTagRecord(record);
+  }, [feed]);
 
   if (loading) {
     return (
@@ -40,7 +54,11 @@ export const FeedList = () => {
       <Stack direction="row" wrap="wrap" mb="6">
         <Table.Root size="md">
           <Table.Header>
-            <Table.Row></Table.Row>
+            <Table.Row>
+              <Table.ColumnHeader>名前</Table.ColumnHeader>
+              <Table.ColumnHeader>概要</Table.ColumnHeader>
+              <Table.ColumnHeader>タグ</Table.ColumnHeader>
+            </Table.Row>
           </Table.Header>
           <Table.Body>
             {Object.entries(siteStates).map(([sourceName, source]) => (
@@ -59,9 +77,18 @@ export const FeedList = () => {
                   </Checkbox.Root>
                 </Table.Cell>
                 <Table.Cell>
+                  <Text>{source.desc}</Text>
+                </Table.Cell>
+                <Table.Cell>
                   <Stack direction="row">
-                    {source.tags.map((tag) => (
-                      <Badge>{tag}</Badge>
+                    {source.tags.map((tagName) => (
+                      <Tooltip
+                        key={tagName}
+                        content={tagRecord[tagName]?.desc}
+                        showArrow
+                      >
+                        <Badge>{tagName}</Badge>
+                      </Tooltip>
                     ))}
                   </Stack>
                 </Table.Cell>
