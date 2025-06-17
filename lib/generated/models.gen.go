@@ -19,7 +19,7 @@ type ConfigSource struct {
 	Desc SourceDesc `json:"desc"`
 
 	// InitialVisible 読み込んだ直後の可視状態
-	InitialVisible *SourceInitialVisible `json:"initial_visible,omitempty"`
+	InitialVisible SourceInitialVisible `json:"initial_visible"`
 
 	// Name RSS配信元の名前
 	Name SourceName `json:"name"`
