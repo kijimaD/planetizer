@@ -13,23 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { useFeed } from "../hooks/FeedContext";
 import { Tooltip } from "./Tooltip";
-import type { ConfigTag } from "../generated/api";
-import { useState, useEffect } from "react";
 
 export const FeedList = () => {
-  const { feed, siteStates, toggleSite, loading } = useFeed();
-
-  const [tagRecord, setTagRecord] = useState<Record<string, ConfigTag>>({});
-  useEffect(() => {
-    if (!feed) return;
-    const record: Record<string, ConfigTag> = {};
-
-    feed.config.tags.forEach((tag) => {
-      record[tag.name] = tag;
-    });
-
-    setTagRecord(record);
-  }, [feed]);
+  const { tagRecord, feed, siteStates, toggleSite, loading } = useFeed();
 
   if (loading) {
     return (

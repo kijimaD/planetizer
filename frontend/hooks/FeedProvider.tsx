@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FeedContext } from "./FeedContext";
-import type { FeedResult, FeedEntry, ConfigSource } from "../generated/api";
+import type {
+  FeedResult,
+  FeedEntry,
+  ConfigSource,
+  ConfigTag,
+} from "../generated/api";
 
 export type SiteStates = Record<string, ConfigSource>;
+export type TagRecord = Record<string, ConfigTag>;
 
 const feedPath = "feed.json";
 
@@ -12,6 +18,7 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
   const [feed, setFeed] = useState<FeedResult>();
   const [loading, setLoading] = useState(true);
   const [siteStates, setSiteStates] = useState<SiteStates>({});
+  const [tagRecord, setTagRecord] = useState<TagRecord>({});
 
   useEffect(() => {
     fetch(feedPath)
@@ -37,8 +44,21 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
     }));
   };
 
+  useEffect(() => {
+    if (!feed) return;
+    const record: Record<string, ConfigTag> = {};
+
+    feed.config.tags.forEach((tag) => {
+      record[tag.name] = tag;
+    });
+
+    setTagRecord(record);
+  }, [feed]);
+
   return (
-    <FeedContext.Provider value={{ feed, siteStates, toggleSite, loading }}>
+    <FeedContext.Provider
+      value={{ tagRecord, feed, siteStates, toggleSite, loading }}
+    >
       {children}
     </FeedContext.Provider>
   );
