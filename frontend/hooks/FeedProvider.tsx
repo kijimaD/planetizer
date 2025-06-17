@@ -7,7 +7,7 @@ import type {
   ConfigTag,
 } from "../generated/api";
 
-export type SiteStates = Record<string, ConfigSource>;
+export type SiteRecord = Record<string, ConfigSource>;
 export type TagRecord = Record<string, ConfigTag>;
 
 const feedPath = "feed.json";
@@ -17,7 +17,7 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [feed, setFeed] = useState<FeedResult>();
   const [loading, setLoading] = useState(true);
-  const [siteStates, setSiteStates] = useState<SiteStates>({});
+  const [siteRecord, setSiteRecord] = useState<SiteRecord>({});
   const [tagRecord, setTagRecord] = useState<TagRecord>({});
 
   useEffect(() => {
@@ -25,17 +25,17 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
       .then((res) => res.json())
       .then((data: FeedResult) => {
         setFeed(data);
-        const states: SiteStates = {};
+        const states: SiteRecord = {};
         data.entries.forEach((e: FeedEntry) => {
           states[e.source.name] = e.source;
         });
-        setSiteStates(states);
+        setSiteRecord(states);
       })
       .finally(() => setLoading(false));
   }, []);
 
   const toggleSite = (source: string) => {
-    setSiteStates((prev) => ({
+    setSiteRecord((prev) => ({
       ...prev,
       [source]: {
         ...prev[source],
@@ -57,7 +57,7 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <FeedContext.Provider
-      value={{ tagRecord, feed, siteStates, toggleSite, loading }}
+      value={{ tagRecord, feed, siteRecord, toggleSite, loading }}
     >
       {children}
     </FeedContext.Provider>

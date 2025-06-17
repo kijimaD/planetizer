@@ -15,7 +15,7 @@ import { useFeed } from "../hooks/FeedContext";
 import { Tooltip } from "./Tooltip";
 
 export const FeedList = () => {
-  const { tagRecord, feed, siteStates, toggleSite, loading } = useFeed();
+  const { tagRecord, feed, siteRecord, toggleSite, loading } = useFeed();
 
   if (loading) {
     return (
@@ -32,7 +32,7 @@ export const FeedList = () => {
   }
 
   const entries = feed.entries.filter(
-    (e) => siteStates[e.source.name].initial_visible,
+    (e) => siteRecord[e.source.name].initial_visible,
   );
 
   return (
@@ -47,7 +47,7 @@ export const FeedList = () => {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {Object.entries(siteStates).map(([sourceName, source]) => (
+            {Object.entries(siteRecord).map(([sourceName, source]) => (
               <Table.Row key={sourceName}>
                 <Table.Cell>
                   <Checkbox.Root

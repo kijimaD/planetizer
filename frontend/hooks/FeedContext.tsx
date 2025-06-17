@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
 import type { FeedResult } from "../generated/api";
-import type { SiteStates, TagRecord } from "./FeedProvider";
+import type { SiteRecord, TagRecord } from "./FeedProvider";
 
 interface FeedContextType {
   feed?: FeedResult;
-  siteStates: SiteStates;
+  siteRecord: SiteRecord;
   tagRecord: TagRecord;
   toggleSite: (source: string) => void;
   loading: boolean;
