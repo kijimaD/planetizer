@@ -129,11 +129,17 @@ export interface FeedEntry {
      */
     'summary': string;
     /**
+     * フィードエントリの配信サイトの名前
+     * @type {string}
+     * @memberof FeedEntry
+     */
+    'source': string;
+    /**
      * 
      * @type {ConfigSource}
      * @memberof FeedEntry
      */
-    'source': ConfigSource;
+    'config_source': ConfigSource;
 }
 /**
  * 

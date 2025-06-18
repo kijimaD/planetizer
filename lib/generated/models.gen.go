@@ -42,12 +42,16 @@ type ConfigTag struct {
 
 // FeedEntry defines model for FeedEntry.
 type FeedEntry struct {
+	ConfigSource ConfigSource `json:"config_source"`
+
 	// Link フィードエントリのURL
 	Link FeedLink `json:"link"`
 
 	// Published フィードエントリの公開日時
 	Published FeedPublished `json:"published"`
-	Source    ConfigSource  `json:"source"`
+
+	// Source フィードエントリの配信サイトの名前
+	Source FeedSource `json:"source"`
 
 	// Summary フィードエントリの概要
 	Summary FeedSummary `json:"summary"`
@@ -73,6 +77,9 @@ type FeedResult struct {
 	// GeneratedAt フィードキュレーションを実行した日時
 	GeneratedAt FeedGeneratedAt `json:"generated_at"`
 }
+
+// FeedSource フィードエントリの配信サイトの名前
+type FeedSource = string
 
 // FeedSummary フィードエントリの概要
 type FeedSummary = string

@@ -91,6 +91,8 @@ components:
         summary:
           $ref: "#/components/schemas/FeedSummary"
         source:
+          $ref: "#/components/schemas/FeedSource"
+        config_source:
           $ref: "#/components/schemas/ConfigSource"
       required:
         - title
@@ -98,6 +100,7 @@ components:
         - published
         - summary
         - source
+        - config_source
 
     # フィールド ================
     SourceRssUrl:
@@ -163,3 +166,8 @@ components:
       type: string
       example: "記事の概要"
       description: フィードエントリの概要
+
+    FeedSource:
+      type: string
+      example: "example site"
+      description: フィードエントリの配信サイトの名前

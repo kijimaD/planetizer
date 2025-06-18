@@ -27,7 +27,7 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
         setFeed(data);
         const states: SiteRecord = {};
         data.entries.forEach((e: FeedEntry) => {
-          states[e.source.name] = e.source;
+          states[e.config_source.name] = e.config_source;
         });
         setSiteRecord(states);
       })

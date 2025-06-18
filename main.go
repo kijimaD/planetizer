@@ -61,11 +61,12 @@ func main() {
 				log.Fatal(err)
 			}
 			feedResult.Entries = append(feedResult.Entries, generated.FeedEntry{
-				Title:     e.Title,
-				Link:      e.Link,
-				Published: *t,
-				Summary:   string(template.HTML(short)),
-				Source:    s,
+				Title:        e.Title,
+				Link:         e.Link,
+				Published:    *t,
+				Summary:      string(template.HTML(short)),
+				Source:       feed.Title,
+				ConfigSource: s,
 			})
 		}
 	}
