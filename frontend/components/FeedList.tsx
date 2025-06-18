@@ -34,7 +34,7 @@ export const FeedList = () => {
     return <div>No data.</div>;
   }
 
-  const entries = feed.entries.filter((e) => siteRecord[e.config_source.name]);
+  const entries = feed.entries.filter((e) => siteRecord[e.config_source]);
 
   return (
     <>
@@ -124,7 +124,8 @@ export const FeedList = () => {
               <Card.Header>
                 <Heading>{entry.title}</Heading>
                 <Text textStyle="xs">
-                  {new Date(entry.published).toLocaleString()} - {entry.source}
+                  {new Date(entry.published).toLocaleString()} -{" "}
+                  {entry.feed_source}
                 </Text>
               </Card.Header>
               <Card.Body>

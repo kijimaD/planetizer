@@ -21,11 +21,6 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
       .then((res) => res.json())
       .then((data: FeedResult) => {
         setFeed(data);
-        const states: SiteRecord = {};
-        data.entries.forEach((e: FeedEntry) => {
-          states[e.config_source.name] = e.config_source.initial_visible;
-        });
-        setSiteRecord(states);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -33,6 +28,16 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
   const toggleSite = (source: string) => {
     setSiteRecord((prev) => ({ ...prev, [source]: !prev[source] }));
   };
+
+  useEffect(() => {
+    if (!feed) return;
+    const states: SiteRecord = {};
+    feed.entries.forEach((e: FeedEntry) => {
+      states[e.config_source] =
+        feed.source_map[e.config_source].config_source.initial_visible;
+    });
+    setSiteRecord(states);
+  }, [feed]);
 
   useEffect(() => {
     if (!feed) return;

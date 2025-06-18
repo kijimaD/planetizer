@@ -49,19 +49,19 @@ export interface Config {
  */
 export interface ConfigSource {
     /**
-     * RSSのURL
+     * 設定ファイルでのRSSのURL
      * @type {string}
      * @memberof ConfigSource
      */
     'rss_url': string;
     /**
-     * RSS配信元の名前
+     * 設定ファイルでのRSS配信元の名前
      * @type {string}
      * @memberof ConfigSource
      */
     'name': string;
     /**
-     * RSS配信元の説明
+     * 設定ファイルでのRSS配信元の説明
      * @type {string}
      * @memberof ConfigSource
      */
@@ -73,7 +73,7 @@ export interface ConfigSource {
      */
     'tags': Array<string>;
     /**
-     * 読み込んだ直後の可視状態
+     * 設定ファイルでの読み込んだ直後の可視状態
      * @type {boolean}
      * @memberof ConfigSource
      */
@@ -133,13 +133,13 @@ export interface FeedEntry {
      * @type {string}
      * @memberof FeedEntry
      */
-    'source': string;
+    'feed_source': string;
     /**
-     * 
-     * @type {ConfigSource}
+     * 設定ファイルでのRSS配信元の名前
+     * @type {string}
      * @memberof FeedEntry
      */
-    'config_source': ConfigSource;
+    'config_source': string;
 }
 /**
  * 

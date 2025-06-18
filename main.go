@@ -76,8 +76,8 @@ func main() {
 				Link:         e.Link,
 				Published:    *t,
 				Summary:      string(template.HTML(short)),
-				Source:       feed.Title,
-				ConfigSource: s,
+				FeedSource:   feed.Title,
+				ConfigSource: s.Name,
 			})
 		}
 	}

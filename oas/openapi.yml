@@ -106,17 +106,18 @@ components:
           $ref: "#/components/schemas/FeedPublished"
         summary:
           $ref: "#/components/schemas/FeedSummary"
-        source:
+        # サイトから取得した名前
+        feed_source:
           $ref: "#/components/schemas/FeedSource"
-        # TODO: 移動させる
+        # 設定ファイルから取得した名前
         config_source:
-          $ref: "#/components/schemas/ConfigSource"
+          $ref: "#/components/schemas/SourceName"
       required:
         - title
         - link
         - published
         - summary
-        - source
+        - feed_source
         - config_source
 
     # フィールド ================
@@ -124,25 +125,21 @@ components:
       type: string
       format: uri
       example: "https://example.com/feed.atom"
-      description: RSSのURL
+      description: 設定ファイルでのRSSのURL
 
     SourceName:
       type: string
       example: "example"
-      description: RSS配信元の名前
+      description: 設定ファイルでのRSS配信元の名前
 
     SourceDesc:
       type: string
       example: "Goチームによる公式ブログ"
-      description: RSS配信元の説明
+      description: 設定ファイルでのRSS配信元の説明
 
     SourceInitialVisible:
       type: boolean
-      description: 読み込んだ直後の可視状態
-
-    SourceCount:
-      type: integer
-      description: 読み込んだ直後の可視状態
+      description: 設定ファイルでの読み込んだ直後の可視状態
 
     SourceTagName:
       type: string

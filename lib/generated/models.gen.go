@@ -15,16 +15,16 @@ type Config struct {
 
 // ConfigSource defines model for ConfigSource.
 type ConfigSource struct {
-	// Desc RSS配信元の説明
+	// Desc 設定ファイルでのRSS配信元の説明
 	Desc SourceDesc `json:"desc"`
 
-	// InitialVisible 読み込んだ直後の可視状態
+	// InitialVisible 設定ファイルでの読み込んだ直後の可視状態
 	InitialVisible SourceInitialVisible `json:"initial_visible"`
 
-	// Name RSS配信元の名前
+	// Name 設定ファイルでのRSS配信元の名前
 	Name SourceName `json:"name"`
 
-	// RssUrl RSSのURL
+	// RssUrl 設定ファイルでのRSSのURL
 	RssUrl SourceRssUrl `json:"rss_url"`
 
 	// Tags RSS配信元についたタグ一覧
@@ -42,16 +42,17 @@ type ConfigTag struct {
 
 // FeedEntry defines model for FeedEntry.
 type FeedEntry struct {
-	ConfigSource ConfigSource `json:"config_source"`
+	// ConfigSource 設定ファイルでのRSS配信元の名前
+	ConfigSource SourceName `json:"config_source"`
+
+	// FeedSource フィードエントリの配信サイトの名前
+	FeedSource FeedSource `json:"feed_source"`
 
 	// Link フィードエントリのURL
 	Link FeedLink `json:"link"`
 
 	// Published フィードエントリの公開日時
 	Published FeedPublished `json:"published"`
-
-	// Source フィードエントリの配信サイトの名前
-	Source FeedSource `json:"source"`
 
 	// Summary フィードエントリの概要
 	Summary FeedSummary `json:"summary"`
@@ -88,13 +89,10 @@ type FeedSummary = string
 // FeedTitle フィードエントリのタイトル
 type FeedTitle = string
 
-// SourceCount 読み込んだ直後の可視状態
-type SourceCount = int
-
-// SourceDesc RSS配信元の説明
+// SourceDesc 設定ファイルでのRSS配信元の説明
 type SourceDesc = string
 
-// SourceInitialVisible 読み込んだ直後の可視状態
+// SourceInitialVisible 設定ファイルでの読み込んだ直後の可視状態
 type SourceInitialVisible = bool
 
 // SourceMap defines model for SourceMap.
@@ -103,10 +101,10 @@ type SourceMap map[string]struct {
 	EntryCount   int          `json:"entry_count"`
 }
 
-// SourceName RSS配信元の名前
+// SourceName 設定ファイルでのRSS配信元の名前
 type SourceName = string
 
-// SourceRssUrl RSSのURL
+// SourceRssUrl 設定ファイルでのRSSのURL
 type SourceRssUrl = string
 
 // SourceTagDesc RSS配信元についたタグの概要
