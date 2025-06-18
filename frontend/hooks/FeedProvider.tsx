@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FeedContext } from "./FeedContext";
-import type {
-  FeedResult,
-  FeedEntry,
-  ConfigSource,
-  ConfigTag,
-} from "../generated/api";
+import type { FeedResult, FeedEntry, ConfigTag } from "../generated/api";
 
-export type SiteRecord = Record<string, ConfigSource>;
+// サイトごとに可視判定する
+export type SiteRecord = Record<string, boolean>;
 export type TagRecord = Record<string, ConfigTag>;
 
 const feedPath = "feed.json";
@@ -27,7 +23,7 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
         setFeed(data);
         const states: SiteRecord = {};
         data.entries.forEach((e: FeedEntry) => {
-          states[e.config_source.name] = e.config_source;
+          states[e.config_source.name] = e.config_source.initial_visible;
         });
         setSiteRecord(states);
       })
@@ -35,13 +31,7 @@ export const FeedProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const toggleSite = (source: string) => {
-    setSiteRecord((prev) => ({
-      ...prev,
-      [source]: {
-        ...prev[source],
-        initial_visible: !prev[source].initial_visible,
-      },
-    }));
+    setSiteRecord((prev) => ({ ...prev, [source]: !prev[source] }));
   };
 
   useEffect(() => {

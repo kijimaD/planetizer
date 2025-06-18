@@ -34,9 +34,7 @@ export const FeedList = () => {
     return <div>No data.</div>;
   }
 
-  const entries = feed.entries.filter(
-    (e) => siteRecord[e.config_source.name].initial_visible,
-  );
+  const entries = feed.entries.filter((e) => siteRecord[e.config_source.name]);
 
   return (
     <>
@@ -61,40 +59,47 @@ export const FeedList = () => {
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
-                    {Object.entries(siteRecord).map(([sourceName, source]) => (
+                    {Object.entries(siteRecord).map(([sourceName, visible]) => (
                       <Table.Row key={sourceName}>
                         <Table.Cell>
                           <Checkbox.Root
                             key={sourceName}
-                            checked={source.initial_visible}
+                            checked={visible}
                             onCheckedChange={() => toggleSite(sourceName)}
                           >
                             <Checkbox.HiddenInput />
                             <Checkbox.Control />
-                            <Tooltip content={source.desc} showArrow>
+                            <Tooltip
+                              content={
+                                feed.source_map[sourceName].config_source.desc
+                              }
+                              showArrow
+                            >
                               <Checkbox.Label>{sourceName}</Checkbox.Label>
                             </Tooltip>
                           </Checkbox.Root>
                         </Table.Cell>
                         <Table.Cell>
-                          <Text>{source.desc}</Text>
-                        </Table.Cell>
-                        <Table.Cell>
                           <Text>
-                            {feed.source_map[source.name].entry_count}
+                            {feed.source_map[sourceName].config_source.desc}
                           </Text>
                         </Table.Cell>
                         <Table.Cell>
+                          <Text>{feed.source_map[sourceName].entry_count}</Text>
+                        </Table.Cell>
+                        <Table.Cell>
                           <Stack direction="row">
-                            {source.tags.map((tagName) => (
-                              <Tooltip
-                                key={tagName}
-                                content={tagRecord[tagName]?.desc}
-                                showArrow
-                              >
-                                <Badge>{tagName}</Badge>
-                              </Tooltip>
-                            ))}
+                            {feed.source_map[sourceName].config_source.tags.map(
+                              (tagName) => (
+                                <Tooltip
+                                  key={tagName}
+                                  content={tagRecord[tagName]?.desc}
+                                  showArrow
+                                >
+                                  <Badge>{tagName}</Badge>
+                                </Tooltip>
+                              ),
+                            )}
                           </Stack>
                         </Table.Cell>
                       </Table.Row>
