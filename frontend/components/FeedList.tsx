@@ -102,14 +102,15 @@ export const FeedList = () => {
       </Stack>
       <Stack gap="8" direction="row" wrap="wrap">
         {entries.map((entry, i) => (
-          <Box key={i}>
+          <Link
+            href={entry.link}
+            target="_blank"
+            rel="noreferrer"
+            _hover={{ textDecoration: "none", bg: "none" }}
+          >
             <Card.Root w="600px" bgColor="gray.50">
               <Card.Header>
-                <Heading>
-                  <Link href={entry.link} target="_blank" rel="noreferrer">
-                    {entry.title}
-                  </Link>
-                </Heading>
+                <Heading>{entry.title}</Heading>
                 <Text textStyle="xs">
                   {new Date(entry.published).toLocaleString()} - {entry.source}
                 </Text>
@@ -121,7 +122,7 @@ export const FeedList = () => {
                 />
               </Card.Body>
             </Card.Root>
-          </Box>
+          </Link>
         ))}
       </Stack>
       <Text textStyle="xs">
