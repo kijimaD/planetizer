@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.3
 info:
   title: Planetizer API
   version: 1.0.0
@@ -74,10 +74,26 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FeedEntry"
+        source_map:
+            $ref: "#/components/schemas/SourceMap"
       required:
         - config
         - generated_at
         - entries
+        - source_map
+
+    SourceMap:
+       type: object
+       additionalProperties:
+         type: object
+         properties:
+           entry_count:
+             type: integer
+           config_source:
+             $ref: "#/components/schemas/ConfigSource"
+         required:
+           - entry_count
+           - config_source
 
     FeedEntry:
       type: object
@@ -92,6 +108,7 @@ components:
           $ref: "#/components/schemas/FeedSummary"
         source:
           $ref: "#/components/schemas/FeedSource"
+        # TODO: 移動させる
         config_source:
           $ref: "#/components/schemas/ConfigSource"
       required:
@@ -121,6 +138,10 @@ components:
 
     SourceInitialVisible:
       type: boolean
+      description: 読み込んだ直後の可視状態
+
+    SourceCount:
+      type: integer
       description: 読み込んだ直後の可視状態
 
     SourceTagName:

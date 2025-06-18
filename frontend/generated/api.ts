@@ -165,6 +165,31 @@ export interface FeedResult {
      * @memberof FeedResult
      */
     'entries': Array<FeedEntry>;
+    /**
+     * 
+     * @type {{ [key: string]: SourceMapValue; }}
+     * @memberof FeedResult
+     */
+    'source_map': { [key: string]: SourceMapValue; };
+}
+/**
+ * 
+ * @export
+ * @interface SourceMapValue
+ */
+export interface SourceMapValue {
+    /**
+     * 
+     * @type {number}
+     * @memberof SourceMapValue
+     */
+    'entry_count': number;
+    /**
+     * 
+     * @type {ConfigSource}
+     * @memberof SourceMapValue
+     */
+    'config_source': ConfigSource;
 }
 
 /**

@@ -26,8 +26,8 @@ func main() {
 	fp := gofeed.NewParser()
 	feedResult := generated.FeedResult{
 		GeneratedAt: time.Now(),
+		SourceMap:   make(generated.SourceMap),
 	}
-
 	data, err := os.ReadFile(configPath)
 	if err != nil {
 		log.Fatal(err)
@@ -41,6 +41,10 @@ func main() {
 	feedResult.Config = *config
 
 	for _, s := range config.Sources {
+		feedResult.SourceMap[s.Name] = struct {
+			ConfigSource generated.ConfigSource `json:"config_source"`
+			EntryCount   int                    `json:"entry_count"`
+		}{}
 		url := strings.TrimSpace(s.RssUrl)
 		if url == "" {
 			continue
@@ -49,6 +53,13 @@ func main() {
 		if err != nil {
 			log.Printf("Failed to parse %s: %v", url, err)
 			continue
+		}
+		feedResult.SourceMap[s.Name] = struct {
+			ConfigSource generated.ConfigSource `json:"config_source"`
+			EntryCount   int                    `json:"entry_count"`
+		}{
+			ConfigSource: s,
+			EntryCount:   len(feed.Items),
 		}
 		for _, e := range feed.Items {
 			t := e.PublishedParsed

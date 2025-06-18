@@ -56,6 +56,7 @@ export const FeedList = () => {
                     <Table.Row>
                       <Table.ColumnHeader>名前</Table.ColumnHeader>
                       <Table.ColumnHeader>概要</Table.ColumnHeader>
+                      <Table.ColumnHeader>数</Table.ColumnHeader>
                       <Table.ColumnHeader>タグ</Table.ColumnHeader>
                     </Table.Row>
                   </Table.Header>
@@ -77,6 +78,11 @@ export const FeedList = () => {
                         </Table.Cell>
                         <Table.Cell>
                           <Text>{source.desc}</Text>
+                        </Table.Cell>
+                        <Table.Cell>
+                          <Text>
+                            {feed.source_map[source.name].entry_count}
+                          </Text>
                         </Table.Cell>
                         <Table.Cell>
                           <Stack direction="row">

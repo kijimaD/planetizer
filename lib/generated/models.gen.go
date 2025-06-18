@@ -76,6 +76,7 @@ type FeedResult struct {
 
 	// GeneratedAt フィードキュレーションを実行した日時
 	GeneratedAt FeedGeneratedAt `json:"generated_at"`
+	SourceMap   SourceMap       `json:"source_map"`
 }
 
 // FeedSource フィードエントリの配信サイトの名前
@@ -87,11 +88,20 @@ type FeedSummary = string
 // FeedTitle フィードエントリのタイトル
 type FeedTitle = string
 
+// SourceCount 読み込んだ直後の可視状態
+type SourceCount = int
+
 // SourceDesc RSS配信元の説明
 type SourceDesc = string
 
 // SourceInitialVisible 読み込んだ直後の可視状態
 type SourceInitialVisible = bool
+
+// SourceMap defines model for SourceMap.
+type SourceMap map[string]struct {
+	ConfigSource ConfigSource `json:"config_source"`
+	EntryCount   int          `json:"entry_count"`
+}
 
 // SourceName RSS配信元の名前
 type SourceName = string
