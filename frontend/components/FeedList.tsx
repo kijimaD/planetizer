@@ -106,6 +106,7 @@ export const FeedList = () => {
             href={entry.link}
             target="_blank"
             rel="noreferrer"
+            key={i}
             _hover={{ textDecoration: "none", bg: "none" }}
           >
             <Card.Root w="600px" bgColor="gray.50">
