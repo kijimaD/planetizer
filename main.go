@@ -151,12 +151,13 @@ func truncateNode(n *html.Node, w io.Writer, maxLen, currentLen int) (newLen int
 	switch n.Type {
 	case html.TextNode:
 		text := n.Data
-		if currentLen+len(text) > maxLen {
+		length := len([]rune(text)) // バイト数でなく文字数カウント
+		if currentLen+length > maxLen {
 			return maxLen, true
 		}
 		w.Write([]byte(html.EscapeString(text)))
-		return currentLen + len(text), false
 
+		return currentLen + length, false
 	case html.ElementNode:
 		var buf bytes.Buffer
 		buf.WriteString("<" + n.Data)
@@ -174,8 +175,8 @@ func truncateNode(n *html.Node, w io.Writer, maxLen, currentLen int) (newLen int
 			}
 		}
 		w.Write([]byte(fmt.Sprintf("</%s>", n.Data)))
-		return currentLen, stop
 
+		return currentLen, stop
 	default:
 		// 無視
 		return currentLen, false
