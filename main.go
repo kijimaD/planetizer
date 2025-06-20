@@ -62,12 +62,15 @@ func main() {
 			EntryCount:   len(feed.Items),
 		}
 		for _, e := range feed.Items {
-			publised := e.PublishedParsed
-			if publised == nil {
+			var publised *time.Time
+			if e.PublishedParsed != nil {
+				publised = e.PublishedParsed
+			} else {
 				now := time.Now()
 				publised = &now
 			}
-			summary := ""
+
+			var summary string
 			if len(e.Content) > 0 {
 				summary, err = TruncateHTML(e.Content, maxContentSize)
 				if err != nil {
