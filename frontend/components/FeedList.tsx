@@ -75,7 +75,20 @@ export const FeedList = () => {
                               }
                               showArrow
                             >
-                              <Checkbox.Label>{sourceName}</Checkbox.Label>
+                              <Checkbox.Label>
+                                <Link
+                                  href={
+                                    feed.source_map[sourceName].config_source
+                                      .rss_url
+                                  }
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  key={sourceName}
+                                  _hover={{ textDecoration: "none" }}
+                                >
+                                  {sourceName}
+                                </Link>
+                              </Checkbox.Label>
                             </Tooltip>
                           </Checkbox.Root>
                         </Table.Cell>
@@ -118,7 +131,7 @@ export const FeedList = () => {
             target="_blank"
             rel="noreferrer"
             key={i}
-            _hover={{ textDecoration: "none", bg: "none" }}
+            _hover={{ textDecoration: "none" }}
           >
             <Card.Root w="600px" bgColor="gray.50">
               <Card.Header>
