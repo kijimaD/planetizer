@@ -61,31 +61,31 @@ func main() {
 			ConfigSource: s,
 			EntryCount:   len(feed.Items),
 		}
-		for _, e := range feed.Items {
+		for _, item := range feed.Items {
 			var publised *time.Time
-			if e.PublishedParsed != nil {
-				publised = e.PublishedParsed
+			if item.PublishedParsed != nil {
+				publised = item.PublishedParsed
 			} else {
 				now := time.Now()
 				publised = &now
 			}
 
 			var summary string
-			if len(e.Content) > 0 {
-				summary, err = TruncateHTML(e.Content, maxContentSize)
+			if len(item.Content) > 0 {
+				summary, err = TruncateHTML(item.Content, maxContentSize)
 				if err != nil {
 					log.Fatal(err)
 				}
-			} else if len(e.Description) > 0 {
-				summary, err = TruncateHTML(e.Description, maxContentSize)
+			} else if len(item.Description) > 0 {
+				summary, err = TruncateHTML(item.Description, maxContentSize)
 				if err != nil {
 					log.Fatal(err)
 				}
 			}
 
 			feedResult.Entries = append(feedResult.Entries, generated.FeedEntry{
-				Title:        e.Title,
-				Link:         e.Link,
+				Title:        item.Title,
+				Link:         item.Link,
 				Published:    *publised,
 				Summary:      string(template.HTML(summary)),
 				FeedSource:   feed.Title,
