@@ -54,8 +54,8 @@ export const FeedList = () => {
                     <Table.Row>
                       <Table.ColumnHeader>名前</Table.ColumnHeader>
                       <Table.ColumnHeader>概要</Table.ColumnHeader>
-                      <Table.ColumnHeader>数</Table.ColumnHeader>
                       <Table.ColumnHeader>タグ</Table.ColumnHeader>
+                      <Table.ColumnHeader>数</Table.ColumnHeader>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
@@ -98,9 +98,6 @@ export const FeedList = () => {
                           </Text>
                         </Table.Cell>
                         <Table.Cell>
-                          <Text>{feed.source_map[sourceName].entry_count}</Text>
-                        </Table.Cell>
-                        <Table.Cell>
                           <Stack direction="row">
                             {feed.source_map[sourceName].config_source.tags.map(
                               (tagName) => (
@@ -114,6 +111,9 @@ export const FeedList = () => {
                               ),
                             )}
                           </Stack>
+                        </Table.Cell>
+                        <Table.Cell>
+                          <Text>{feed.source_map[sourceName].entry_count}</Text>
                         </Table.Cell>
                       </Table.Row>
                     ))}

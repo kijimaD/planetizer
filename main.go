@@ -22,6 +22,9 @@ const maxContentSize = 1000
 const configPath = "config.json"
 const feedPath = "frontend/public/feed.json"
 
+// これより過去は表示しない
+var entryMinDate = time.Now().AddDate(-1, 0, 0)
+
 func main() {
 	fp := gofeed.NewParser()
 	feedResult := generated.FeedResult{
@@ -59,7 +62,7 @@ func main() {
 			EntryCount   int                    `json:"entry_count"`
 		}{
 			ConfigSource: s,
-			EntryCount:   len(feed.Items),
+			EntryCount:   0,
 		}
 		for _, item := range feed.Items {
 			var publised *time.Time
@@ -68,6 +71,15 @@ func main() {
 			} else {
 				now := time.Now()
 				publised = &now
+			}
+
+			if publised.Before(entryMinDate) {
+				continue
+			}
+			{
+				current := feedResult.SourceMap[s.Name]
+				current.EntryCount++
+				feedResult.SourceMap[s.Name] = current
 			}
 
 			var summary string
