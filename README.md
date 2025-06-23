@@ -16,4 +16,5 @@ Planet with static file generation.
 - [x] テーブルの、サイト名にfeedリンクをつける
 - [x] フィードにsummaryがない場合はdescriptionを採用する
 - [x] 期間指定して取得する。古いものは取得しない
-- [ ] 既読にできるようにする
+- [x] 既読にできるようにする
+- [ ] 既読の件数を表示する

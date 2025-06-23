@@ -8,7 +8,7 @@ import {
   HStack,
   Heading,
 } from "@chakra-ui/react";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa6";
 
 export const AppLayout = () => {
   return (

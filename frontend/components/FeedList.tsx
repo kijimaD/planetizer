@@ -1,5 +1,7 @@
-import { IoMdSettings } from "react-icons/io";
 import {
+  Flex,
+  HStack,
+  Button,
   Badge,
   Checkbox,
   Center,
@@ -14,11 +16,35 @@ import {
   Accordion,
   Icon,
 } from "@chakra-ui/react";
+import { IoMdSettings } from "react-icons/io";
+import { FcCheckmark } from "react-icons/fc";
 import { useFeed } from "../hooks/FeedContext";
 import { Tooltip } from "./Tooltip";
+import { useState, useEffect } from "react";
 
 export const FeedList = () => {
   const { tagRecord, feed, siteRecord, toggleSite, loading } = useFeed();
+  const [readEntries, setReadEntries] = useState<Set<string>>(new Set());
+  const localStorageKey = "readEntries";
+
+  // localStorage から既読データを読み込む
+  useEffect(() => {
+    const data = localStorage.getItem(localStorageKey);
+    if (data) {
+      try {
+        setReadEntries(new Set(JSON.parse(data)));
+      } catch (e) {
+        console.error("Failed to parse readEntries", e);
+      }
+    }
+  }, []);
+
+  const markAsRead = (url: string) => {
+    const newSet = new Set(readEntries);
+    newSet.add(url);
+    setReadEntries(newSet);
+    localStorage.setItem(localStorageKey, JSON.stringify([...newSet]));
+  };
 
   if (loading) {
     return (
@@ -34,7 +60,9 @@ export const FeedList = () => {
     return <div>No data.</div>;
   }
 
-  const entries = feed.entries.filter((e) => siteRecord[e.config_source]);
+  const entries = feed.entries.filter(
+    (e) => siteRecord[e.config_source] && !readEntries.has(e.link),
+  );
 
   return (
     <>
@@ -126,29 +154,50 @@ export const FeedList = () => {
       </Stack>
       <Stack gap="8" direction="row" wrap="wrap">
         {entries.map((entry, i) => (
-          <Link
-            href={entry.link}
-            target="_blank"
-            rel="noreferrer"
-            key={i}
-            _hover={{ textDecoration: "none" }}
-          >
-            <Card.Root w="600px" bgColor="gray.50">
-              <Card.Header>
-                <Heading>{entry.title}</Heading>
+          <Card.Root w="600px" bgColor="gray.50">
+            <Card.Header>
+              <Heading>
+                <Link
+                  href={entry.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  key={i}
+                  _hover={{ textDecoration: "none" }}
+                >
+                  {entry.title}
+                </Link>
+              </Heading>
+              <HStack>
                 <Text textStyle="xs">
                   {new Date(entry.published).toLocaleString()} -{" "}
                   {entry.feed_source}
                 </Text>
-              </Card.Header>
-              <Card.Body>
+              </HStack>
+              <Flex justify="flex-end" ml="auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => markAsRead(entry.link)}
+                >
+                  <FcCheckmark />
+                </Button>
+              </Flex>
+            </Card.Header>
+            <Card.Body>
+              <Link
+                href={entry.link}
+                target="_blank"
+                rel="noreferrer"
+                key={i}
+                _hover={{ textDecoration: "none" }}
+              >
                 <Text
                   dangerouslySetInnerHTML={{ __html: entry.summary }}
                   className="feedcontent"
                 />
-              </Card.Body>
-            </Card.Root>
-          </Link>
+              </Link>
+            </Card.Body>
+          </Card.Root>
         ))}
       </Stack>
       <Text textStyle="xs">
