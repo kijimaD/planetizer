@@ -1,344 +1,224 @@
 {
   "sources": [
     {
-      "rss_url": "https://go.dev/blog/feed.atom?format=xml",
-      "name": "Go Blog",
+      "desc": "",
+      "initial_visible": true,
+      "name": "",
+      "rss_url": "",
+      "tags": []
+    },
+    {
+      "desc": "AWSの公式ブログ(日本語)",
+      "initial_visible": true,
+      "name": "Amazon Web Services ブログ",
+      "rss_url": "https://aws.amazon.com/jp/blogs/news/feed/",
+      "tags": [
+        "official"
+      ]
+    },
+    {
+      "desc": "Go開発者のブログ",
+      "initial_visible": true,
+      "name": "Dave Cheney氏のブログ",
+      "rss_url": "https://dave.cheney.net/feed",
+      "tags": [
+        "go"
+      ]
+    },
+    {
+      "desc": "GitHubの公式ブログ(日本語)",
+      "initial_visible": true,
+      "name": "GitHubブログ",
+      "rss_url": "https://github.blog/jp/feed/",
+      "tags": [
+        "official"
+      ]
+    },
+    {
       "desc": "Goチームによる公式ブログ",
+      "initial_visible": true,
+      "name": "Go Blog",
+      "rss_url": "https://go.dev/blog/feed.atom?format=xml",
       "tags": [
         "go",
         "official"
-      ],
-      "initial_visible": true
+      ]
     },
     {
-      "rss_url": "https://dave.cheney.net/feed",
-      "name": "Dave Cheney氏のブログ",
-      "desc": "Go開発者のブログ",
-      "tags": [
-        "go"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/t-wada/rss",
-      "name": "t-wada氏のはてなブックマーク",
-      "desc": "有名な開発者のブックマーク。開発に関する話題など",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://syu-m-5151.hatenablog.com/rss",
-      "name": "nwiizo氏のはてなブログ",
-      "desc": "有名な開発者のブログ。開発AIや、技術記事に関する話題など",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://sachachua.com/blog/category/weekly/feed/",
-      "name": "sachachua氏のブログ",
-      "desc": "有名開発者のブログ。Emacsの話題",
-      "tags": [
-        "emacs"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://techracho.bpsinc.jp/feed",
-      "name": "TechRacho",
-      "desc": "開発会社のテックブログ。RubyやRailsの話題",
-      "tags": [
-        "ruby"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://efcl.info/feed/",
-      "name": "efcl",
-      "desc": "azu氏のブログ。JavaScriptの話題",
-      "tags": [
-        "js"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://www.rfc-editor.org/rfcrss.xml",
-      "name": "RFC Editor",
-      "desc": "公式RFCドキュメント",
-      "tags": [
-        "official"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/kakku22/rss",
-      "name": "kakku22氏のはてなブックマーク",
-      "desc": "有名開発者のブックマーク。開発論、AIの話題",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/mizchi/rss",
-      "name": "mizchi氏のはてなブックマーク",
-      "desc": "有名開発者のブックマーク。開発AI、TypeScriptの話題",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/motemen/rss",
-      "name": "motemen氏のはてなブックマーク",
-      "desc": "開発の話題",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://soudai.hatenablog.com/rss",
-      "name": "soudai氏のはてなブログ",
-      "desc": "開発の話題",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://www.megamouth.info/rss",
-      "name": "megamouth氏のはてなブログ",
-      "desc": "文学",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/norimaking777/rss",
-      "name": "自分のはてなブックマーク",
-      "desc": "開発、興味深い出来事や場所に関するブックマーク",
-      "tags": [],
-      "initial_visible": false
-    },
-    {
-      "rss_url": "https://kijimad.github.io/roam/atom.xml",
-      "name": "Insomnia",
       "desc": "自分の公開メモ。ほかの優良な記事と比較して見る",
-      "tags": [],
-      "initial_visible": true
-    }
-  ],
-  "sources": [
-    {
-      "rss_url": "https://go.dev/blog/feed.atom?format=xml",
-      "name": "Go Blog",
-      "desc": "Goチームによる公式ブログ",
-      "tags": [
-        "go",
-        "official"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://dave.cheney.net/feed",
-      "name": "Dave Cheney氏のブログ",
-      "desc": "Go開発者のブログ",
-      "tags": [
-        "go"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/t-wada/rss",
-      "name": "t-wada氏のはてなブックマーク",
-      "desc": "有名な開発者のブックマーク。開発に関する話題など",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://syu-m-5151.hatenablog.com/rss",
-      "name": "nwiizo氏のはてなブログ",
-      "desc": "有名な開発者のブログ。開発AIや、技術記事に関する話題など",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://sachachua.com/blog/category/weekly/feed/",
-      "name": "sachachua氏のブログ",
-      "desc": "有名開発者のブログ。Emacsの話題",
-      "tags": [
-        "emacs"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://techracho.bpsinc.jp/feed",
-      "name": "TechRacho",
-      "desc": "開発会社のテックブログ。RubyやRailsの話題",
-      "tags": [
-        "ruby"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://efcl.info/feed/",
-      "name": "efcl",
-      "desc": "azu氏のブログ。JavaScriptの話題",
-      "tags": [
-        "js"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://www.rfc-editor.org/rfcrss.xml",
-      "name": "RFC Editor",
-      "desc": "公式RFCドキュメント",
-      "tags": [
-        "official"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/kakku22/rss",
-      "name": "kakku22氏のはてなブックマーク",
-      "desc": "有名開発者のブックマーク。開発論、AIの話題",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/mizchi/rss",
-      "name": "mizchi氏のはてなブックマーク",
-      "desc": "有名開発者のブックマーク。開発AI、TypeScriptの話題",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/motemen/rss",
-      "name": "motemen氏のはてなブックマーク",
-      "desc": "開発の話題",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://soudai.hatenablog.com/rss",
-      "name": "soudai氏のはてなブログ",
-      "desc": "開発の話題",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://www.megamouth.info/rss",
-      "name": "megamouth氏のはてなブログ",
-      "desc": "文学",
-      "tags": [],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "http://b.hatena.ne.jp/norimaking777/rss",
-      "name": "自分のはてなブックマーク",
-      "desc": "開発、興味深い出来事や場所に関するブックマーク",
-      "tags": [],
-      "initial_visible": false
-    },
-    {
-      "rss_url": "https://kijimad.github.io/roam/atom.xml",
+      "initial_visible": false,
       "name": "Insomnia",
-      "desc": "自分の公開メモ。ほかの優良な記事と比較して見る",
-      "tags": [],
-      "initial_visible": false
+      "rss_url": "https://kijimad.github.io/roam/atom.xml",
+      "tags": []
     },
     {
-      "rss_url": "https://ja.react.dev/rss.xml",
-      "name": "React Blog",
-      "desc": "Reactチームによる公式ブログ",
-      "tags": [
-        "official"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://developer.mozilla.org/en-US/blog/rss.xml",
-      "name": "MDN Blog",
       "desc": "MDNの公式ブログ",
+      "initial_visible": true,
+      "name": "MDN Blog",
+      "rss_url": "https://developer.mozilla.org/en-US/blog/rss.xml",
       "tags": [
         "official"
-      ],
-      "initial_visible": true
+      ]
     },
     {
-      "rss_url": "https://devblogs.microsoft.com/typescript/feed/",
-      "name": "TypeScript Blog",
-      "desc": "TypeScriptチームによる公式ブログ",
+      "desc": "公式RFCドキュメント",
+      "initial_visible": true,
+      "name": "RFC Editor",
+      "rss_url": "https://www.rfc-editor.org/rfcrss.xml",
       "tags": [
-        "official",
-        "typescript"
-      ],
-      "initial_visible": true
+        "official"
+      ]
     },
     {
-      "rss_url": "https://cprss.s3.amazonaws.com/rubyweekly.com.xml",
-      "name": "Ruby Weekly",
+      "desc": "Reactチームによる公式ブログ",
+      "initial_visible": true,
+      "name": "React Blog",
+      "rss_url": "https://ja.react.dev/rss.xml",
+      "tags": [
+        "official"
+      ]
+    },
+    {
       "desc": "Rubyチームによる公式ニュースレター",
+      "initial_visible": true,
+      "name": "Ruby Weekly",
+      "rss_url": "https://cprss.s3.amazonaws.com/rubyweekly.com.xml",
       "tags": [
         "official",
         "ruby"
-      ],
-      "initial_visible": true
+      ]
     },
     {
-      "rss_url": "https://blog.rust-lang.org/feed",
-      "name": "Rust Blog",
       "desc": "Rustチームによる公式ブログ",
+      "initial_visible": true,
+      "name": "Rust Blog",
+      "rss_url": "https://blog.rust-lang.org/feed",
       "tags": [
         "official",
         "rust"
-      ],
-      "initial_visible": true
+      ]
     },
     {
-      "rss_url": "https://aws.amazon.com/jp/blogs/news/feed/",
-      "name": "Amazon Web Services ブログ",
-      "desc": "AWSの公式ブログ(日本語)",
-      "tags": [
-        "official"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://github.blog/jp/feed/",
-      "name": "GitHubブログ",
-      "desc": "GitHubの公式ブログ(日本語)",
-      "tags": [
-        "official"
-      ],
-      "initial_visible": true
-    },
-    {
-      "rss_url": "https://tech.smarthr.jp/feed",
-      "name": "SmartHR 開発者ブログ",
       "desc": "開発会社のテックブログ。RubyやRailsの話題",
-      "tags": [],
-      "initial_visible": true
+      "initial_visible": true,
+      "name": "SmartHR 開発者ブログ",
+      "rss_url": "https://tech.smarthr.jp/feed",
+      "tags": []
     },
     {
-      "rss_url": "",
-      "name": "",
-      "desc": "",
-      "tags": [],
-      "initial_visible": true
+      "desc": "開発会社のテックブログ。RubyやRailsの話題",
+      "initial_visible": true,
+      "name": "TechRacho",
+      "rss_url": "https://techracho.bpsinc.jp/feed",
+      "tags": [
+        "ruby"
+      ]
+    },
+    {
+      "desc": "TypeScriptチームによる公式ブログ",
+      "initial_visible": true,
+      "name": "TypeScript Blog",
+      "rss_url": "https://devblogs.microsoft.com/typescript/feed/",
+      "tags": [
+        "official",
+        "typescript"
+      ]
+    },
+    {
+      "desc": "azu氏のブログ。JavaScriptの話題",
+      "initial_visible": true,
+      "name": "efcl",
+      "rss_url": "https://efcl.info/feed/",
+      "tags": [
+        "js"
+      ]
+    },
+    {
+      "desc": "有名開発者のブックマーク。開発論、AIの話題",
+      "initial_visible": true,
+      "name": "kakku22氏のはてなブックマーク",
+      "rss_url": "http://b.hatena.ne.jp/kakku22/rss",
+      "tags": []
+    },
+    {
+      "desc": "文学",
+      "initial_visible": true,
+      "name": "megamouth氏のはてなブログ",
+      "rss_url": "https://www.megamouth.info/rss",
+      "tags": []
+    },
+    {
+      "desc": "有名開発者のブックマーク。開発AI、TypeScriptの話題",
+      "initial_visible": true,
+      "name": "mizchi氏のはてなブックマーク",
+      "rss_url": "http://b.hatena.ne.jp/mizchi/rss",
+      "tags": []
+    },
+    {
+      "desc": "開発の話題",
+      "initial_visible": true,
+      "name": "motemen氏のはてなブックマーク",
+      "rss_url": "http://b.hatena.ne.jp/motemen/rss",
+      "tags": []
+    },
+    {
+      "desc": "有名な開発者のブログ。開発AIや、技術記事に関する話題など",
+      "initial_visible": true,
+      "name": "nwiizo氏のはてなブログ",
+      "rss_url": "https://syu-m-5151.hatenablog.com/rss",
+      "tags": []
+    },
+    {
+      "desc": "有名開発者のブログ。Emacsの話題",
+      "initial_visible": true,
+      "name": "sachachua氏のブログ",
+      "rss_url": "https://sachachua.com/blog/category/weekly/feed/",
+      "tags": [
+        "emacs"
+      ]
+    },
+    {
+      "desc": "開発の話題",
+      "initial_visible": true,
+      "name": "soudai氏のはてなブログ",
+      "rss_url": "https://soudai.hatenablog.com/rss",
+      "tags": []
+    },
+    {
+      "desc": "有名な開発者のブックマーク。開発に関する話題など",
+      "initial_visible": true,
+      "name": "t-wada氏のはてなブックマーク",
+      "rss_url": "http://b.hatena.ne.jp/t-wada/rss",
+      "tags": []
+    },
+    {
+      "desc": "開発、興味深い出来事や場所に関するブックマーク",
+      "initial_visible": false,
+      "name": "自分のはてなブックマーク",
+      "rss_url": "http://b.hatena.ne.jp/norimaking777/rss",
+      "tags": []
     }
   ],
   "tags": [
     {
-      "name": "go",
-      "desc": "Goに関する情報"
+      "desc": "Emacsに関する情報",
+      "name": "emacs"
     },
     {
-      "name": "ruby",
-      "desc": "Rubyに関する情報"
+      "desc": "Goに関する情報",
+      "name": "go"
     },
     {
-      "name": "js",
-      "desc": "JavaScriptに関する情報"
+      "desc": "JavaScriptに関する情報",
+      "name": "js"
     },
     {
-      "name": "official",
-      "desc": "公式"
+      "desc": "公式",
+      "name": "official"
     },
     {
-      "name": "emacs",
-      "desc": "Emacsに関する情報"
+      "desc": "Rubyに関する情報",
+      "name": "ruby"
     }
   ]
 }

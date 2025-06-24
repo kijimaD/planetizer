@@ -43,6 +43,10 @@ func main() {
 	}
 	feedResult.Config = *config
 
+	if err := formatConfig(config); err != nil {
+		log.Fatal(gofeed.ErrFeedTypeNotDetected)
+	}
+
 	for _, s := range config.Sources {
 		feedResult.SourceMap[s.Name] = struct {
 			ConfigSource generated.ConfigSource `json:"config_source"`
@@ -127,6 +131,34 @@ func main() {
 	if err := enc.Encode(feedResult); err != nil {
 		log.Fatal(err)
 	}
+}
+
+// 設定を整形して書き出し直す
+func formatConfig(config *generated.Config) error {
+	sort.Slice(config.Sources, func(i, j int) bool {
+		return config.Sources[i].Name < config.Sources[j].Name
+	})
+	for _, src := range config.Sources {
+		sort.Slice(src.Tags, func(i, j int) bool {
+			return src.Tags[i] < src.Tags[j]
+		})
+	}
+	sort.Slice(config.Tags, func(i, j int) bool {
+		return config.Tags[i].Name < config.Tags[j].Name
+	})
+
+	file, err := os.Create(configPath)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	enc := json.NewEncoder(file)
+	enc.SetIndent("", "  ")
+	if err := enc.Encode(config); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // HTML をパースして、最初の N 文字分のテキストだけ含む HTML を出力する
