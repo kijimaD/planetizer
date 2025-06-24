@@ -173,15 +173,6 @@ export const FeedList = () => {
                   {entry.feed_source}
                 </Text>
               </HStack>
-              <Flex justify="flex-end" ml="auto">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() => markAsRead(entry.link)}
-                >
-                  <FcCheckmark />
-                </Button>
-              </Flex>
             </Card.Header>
             <Card.Body>
               <Link
@@ -196,6 +187,15 @@ export const FeedList = () => {
                   className="feedcontent"
                 />
               </Link>
+              <Flex justify="flex-end" ml="auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => markAsRead(entry.link)}
+                >
+                  <FcCheckmark />
+                </Button>
+              </Flex>
             </Card.Body>
           </Card.Root>
         ))}
