@@ -156,23 +156,21 @@ export const FeedList = () => {
         {entries.map((entry, i) => (
           <Card.Root w="600px" bgColor="gray.50">
             <Card.Header>
-              <Heading>
-                <Link
-                  href={entry.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  key={i}
-                  _hover={{ textDecoration: "none" }}
-                >
-                  {entry.title}
-                </Link>
-              </Heading>
-              <HStack>
-                <Text textStyle="xs">
-                  {new Date(entry.published).toLocaleString()} -{" "}
-                  {entry.feed_source}
-                </Text>
-              </HStack>
+              <Link
+                href={entry.link}
+                target="_blank"
+                rel="noreferrer"
+                key={i}
+                _hover={{ textDecoration: "none" }}
+              >
+                <Box>
+                  <Heading>{entry.title}</Heading>
+                  <Text textStyle="xs">
+                    {new Date(entry.published).toLocaleString()} -{" "}
+                    {entry.feed_source}
+                  </Text>
+                </Box>
+              </Link>
             </Card.Header>
             <Card.Body>
               <Link
