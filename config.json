@@ -9,7 +9,7 @@
     },
     {
       "desc": "AWSの公式ブログ(日本語)",
-      "initial_visible": true,
+      "initial_visible": false,
       "name": "Amazon Web Services ブログ",
       "rss_url": "https://aws.amazon.com/jp/blogs/news/feed/",
       "tags": [
@@ -59,6 +59,13 @@
       "tags": [
         "official"
       ]
+    },
+    {
+      "desc": "有名開発者のブログの日本語訳",
+      "initial_visible": true,
+      "name": "Martin Fowler氏のブログ",
+      "rss_url": "https://bliki-ja.github.io/feed",
+      "tags": []
     },
     {
       "desc": "公式RFCドキュメント",
@@ -189,6 +196,13 @@
       "initial_visible": true,
       "name": "t-wada氏のはてなブックマーク",
       "rss_url": "http://b.hatena.ne.jp/t-wada/rss",
+      "tags": []
+    },
+    {
+      "desc": "開発組織やIT人材についての話題など",
+      "initial_visible": true,
+      "name": "久松剛氏のブログ",
+      "rss_url": "https://note.com/makaibito/rss",
       "tags": []
     },
     {
