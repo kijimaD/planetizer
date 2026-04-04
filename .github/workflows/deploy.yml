@@ -44,11 +44,11 @@ jobs:
       - name: build
         run: npm run production
       - name: setup pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: "./frontend/dist"
       - name: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         id: deployment
