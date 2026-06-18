@@ -162,10 +162,17 @@
       "tags": []
     },
     {
-      "desc": "開発の話題",
+      "desc": "有名開発者のブックマーク",
       "initial_visible": true,
       "name": "motemen氏のはてなブックマーク",
       "rss_url": "http://b.hatena.ne.jp/motemen/rss",
+      "tags": []
+    },
+    {
+      "desc": "自分のはてなブックマーク",
+      "initial_visible": true,
+      "name": "norimaking777のはてなブックマーク",
+      "rss_url": "https://b.hatena.ne.jp/norimaking777/bookmark.rss",
       "tags": []
     },
     {
